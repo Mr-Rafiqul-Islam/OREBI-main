@@ -4,9 +4,6 @@ import Heading from '../components/Heading'
 import Breadcrumb from '../components/Breadcrumb'
 import Filter from '../components/layout/Filter'
 import Flex from '../components/Flex'
-import Grid1 from '../components/Icons/Grid1'
-import { FaList } from "react-icons/fa";
-import Paragraph from '../components/Paragraph'
 import Filter2 from '../components/layout/Filter2'
 import ProductShop from '../components/layout/ProductShop'
 
