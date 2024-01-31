@@ -4,6 +4,7 @@ import Container from '../components/Container'
 import Input from '../components/Input'
 import Button from '../components/Button'
 import Breadcrumb from '../components/Breadcrumb'
+import Map from '../components/layout/Map'
 
 const Contact = () => {
   return (
@@ -20,6 +21,7 @@ const Contact = () => {
             <Button text='Post' className='mb-[140px] py-4 px-[85px]'/>
             
         </form>
+        <Map/>
         </Container>
     </section>
   )
