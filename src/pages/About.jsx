@@ -8,11 +8,20 @@ import { Link } from 'react-router-dom'
 import Button from '../components/Button'
 import Paragraph from '../components/Paragraph'
 import Breadcrumb from '../components/Breadcrumb'
+import { useSelector } from 'react-redux'
+import Flex from '../components/Flex'
 
 const About = () => {
+    let data = useSelector((state)=> state.breadcrumb.currentname)
+    let breadC = window.location.pathname.replace("/", "").replace("-", " ")
   return (
     <section className='pt-[124px] pb-[131px]'>
         <Container>
+        <Flex>
+            <h1>{data}</h1>
+            <div className="px-2">&gt;</div>
+            <h1 className='first-letter:uppercase'>{breadC}</h1>
+          </Flex>
         <Heading text='About' className='text-5xl font-bold text-primary '/>
         <Breadcrumb/>
         <div className="grid grid-cols-2 gap-1 mb-28">
