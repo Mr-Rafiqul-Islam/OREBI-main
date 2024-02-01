@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Home from "./Pages/Home";
 import RootLayout from "./components/layout/RootLayout";
-import Contact from "./Pages/Contact";
+import Contact from "./pages/Contact";
 import Error from "./pages/Error";
 import About from "./pages/About";
 import Shop from "./pages/Shop";
@@ -24,7 +24,7 @@ const router = createBrowserRouter(
         <Route path='/shop' element={<Shop/>}/>
         <Route path='/journal' element={<Journal/>}/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/:id' element={<Error/>}/>
+        <Route path='*' element={<Error/>}/>
       </Route>
     </Route>
   )

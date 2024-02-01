@@ -6,13 +6,20 @@ import Filter from '../components/layout/Filter'
 import Flex from '../components/Flex'
 import Filter2 from '../components/layout/Filter2'
 import ProductShop from '../components/layout/ProductShop'
-
+import { useSelector } from 'react-redux'
 
 
 const Shop = () => {
+  let data = useSelector((state)=> state.breadcrumb.currentname)
+  let breadC = window.location.pathname.replace("/", "").replace("-", " ")
   return (
     <section className='pt-[124px] pb-[140px]'>
         <Container>
+          <Flex>
+            <h1>{data}</h1>
+            <div className="px-2">&gt;</div>
+            <h1 className='first-letter:uppercase'>{breadC}</h1>
+          </Flex>
           <Heading text='Product' className='text-5xl font-bold text-primary'/>
           <Breadcrumb/>
           <Flex className='gap-[33px]'>
