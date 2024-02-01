@@ -6,8 +6,15 @@ import List from '../List'
 import LOGO from '../../assets/Logo.png'
 import { Link } from 'react-router-dom'
 import Paragraph from '../Paragraph'
+import { useDispatch } from 'react-redux'
+import { pageName } from '../../slices/breadcrumbSlice'
 
 const Navbar = () => {
+    let dispatch = useDispatch();
+
+    let handleBreadcrumb = (name) => {
+      dispatch(pageName(name));
+    };
   return (
     <nav className='py-[32px]'>
         <Container>
@@ -18,11 +25,11 @@ const Navbar = () => {
                 <div className="w-1/3">
                     <ul>
                         <Flex className='justify-center'>
-                          <List  href='/' text='Home' className='text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300'/>
-                          <List href='shop' text='Shop' className='text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300'/>
-                          <List href='contact' text='Contacts' className='text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300'/>
-                          <List href='about' text='About' className='text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300'/>
-                          <List href='journal' text='Journal' className='text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300'/>                          
+                          <List onClick={() => handleBreadcrumb("Home")} href='/' text='Home' className='text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300'/>
+                          <List onClick={() => handleBreadcrumb("Shop")} href='shop' text='Shop' className='text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300'/>
+                          <List onClick={() => handleBreadcrumb("Contact")} href='contact' text='Contacts' className='text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300'/>
+                          <List onClick={() => handleBreadcrumb("About")} href='about' text='About' className='text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300'/>
+                          <List onClick={() => handleBreadcrumb("Journal")} href='journal' text='Journal' className='text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300'/>                          
                         </Flex>
                     </ul>
                 </div>

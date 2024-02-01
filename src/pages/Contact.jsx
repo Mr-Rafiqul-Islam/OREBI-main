@@ -5,11 +5,20 @@ import Input from '../components/Input'
 import Button from '../components/Button'
 import Breadcrumb from '../components/Breadcrumb'
 import Map from '../components/layout/Map'
+import { useSelector } from 'react-redux'
+import Flex from '../components/Flex'
 
 const Contact = () => {
+  let data = useSelector((state)=> state.breadcrumb.currentname)
+  let breadC = window.location.pathname.replace("/", "").replace("-", " ")
   return (
     <section className='pt-32 pb-[140px]'>
         <Container>
+          <Flex>
+            <h1>{data}</h1>
+            <div className="px-2">&gt;</div>
+            <h1 className='first-letter:uppercase'>{breadC}</h1>
+          </Flex>
         <Heading text='Contact' className='text-5xl font-bold text-primary'/>
         <Breadcrumb/>
         <form action=""  className='w-1/2'>
