@@ -12,6 +12,8 @@ import About from "./pages/About";
 import Shop from "./pages/Shop";
 import Journal from "./pages/Journal";
 import Login from "./pages/Login";
+import UserPopup from "./components/layout/UserPopup";
+import SignUp from "./pages/SignUp";
 
 
 const router = createBrowserRouter(
@@ -24,6 +26,8 @@ const router = createBrowserRouter(
         <Route path='/shop' element={<Shop/>}/>
         <Route path='/journal' element={<Journal/>}/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/sign-up' element={<SignUp/>}/>
+        <Route path='/user' element={<UserPopup/>}/>
         <Route path='*' element={<Error/>}/>
       </Route>
     </Route>
