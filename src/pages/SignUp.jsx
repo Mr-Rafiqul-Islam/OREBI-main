@@ -37,7 +37,7 @@ function SignUp() {
                 <div className="grid grid-cols-3 gap-10">
                     <div>
                     <label htmlFor="state" className='font-dmsans font-bold text-primary text-base block mb-[10px]'>Country</label>
-                    <select name="state" className='bg-transparent w-full focus:outline-none border-b-2 border-[#F0F0F0] pb-[20px]' id="">
+                    <select name="country" className='bg-transparent w-full focus:outline-none border-b-2 border-[#F0F0F0] pb-[20px]' id="country">
                         <option value="">Please select</option>
                         <option value="">please </option>
                         <option value="">please </option>
@@ -45,7 +45,7 @@ function SignUp() {
                     </div>
                     <div>
                     <label htmlFor="state" className='font-dmsans font-bold text-primary text-base block mb-[10px]'>Region/State</label>
-                    <select name="state" className='bg-transparent w-full focus:outline-none border-b-2 border-[#F0F0F0] pb-[20px]' id="">
+                    <select name="state" className='bg-transparent w-full focus:outline-none border-b-2 border-[#F0F0F0] pb-[20px]' id="state">
                         <option value="">Please select</option>
                         <option value="">please </option>
                         <option value="">please </option>
@@ -58,7 +58,15 @@ function SignUp() {
                     <Input inputype='password' labelname='Password' inputph='password' />
                     <Input inputype='password' labelname='Repeat Password' inputph='Repeat password' />
                 </div>
-
+                <div className='mb-[10px]'>
+                <input type="checkbox" id="policy" name="policy" value=""/>
+                <label for="policy" className='font-dmsans font-regular text-third text-sm ms-3' aria-required='true'> I have read and agree to the Privacy Policy</label>
+                </div>
+                <div className='mb-[30px]'>
+                <span className='font-dmsans font-regular text-third text-sm me-8'>Subscribe Newsletter</span>
+                <input type="radio" id="Yes" name="newsletter" value="Yes" className='w-4 h-4 rounded-[0px] me-4 ms-4'/><label for='Yes' className='font-dmsans font-regular text-third text-sm'>Yes</label>
+                <input type="radio" id="No" name="newsletter" value="No" className='w-4 h-4 rounded-[0px] me-4 ms-4'/><label for='No' className='font-dmsans font-regular text-third text-sm'>No</label>
+                </div>
 
                 
                 <Button text="Log in" className='py-4 ps-[77px] pe-[83px]'/>
