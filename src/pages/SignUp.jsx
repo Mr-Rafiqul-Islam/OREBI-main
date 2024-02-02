@@ -36,10 +36,20 @@ function SignUp() {
                 </div>
                 <div className="grid grid-cols-3 gap-10">
                     <div>
-                        <Input inputype='text' labelname='Country' inputph='Your City' />
+                    <label htmlFor="state" className='font-dmsans font-bold text-primary text-base block mb-[10px]'>Country</label>
+                    <select name="state" className='bg-transparent w-full focus:outline-none border-b-2 border-[#F0F0F0] pb-[20px]' id="">
+                        <option value="">Please select</option>
+                        <option value="">please </option>
+                        <option value="">please </option>
+                    </select>
                     </div>
                     <div>
-                    <Input inputype='text' labelname='Region/State' inputph='05228' />
+                    <label htmlFor="state" className='font-dmsans font-bold text-primary text-base block mb-[10px]'>Region/State</label>
+                    <select name="state" className='bg-transparent w-full focus:outline-none border-b-2 border-[#F0F0F0] pb-[20px]' id="">
+                        <option value="">Please select</option>
+                        <option value="">please </option>
+                        <option value="">please </option>
+                    </select>
                     </div>
                 </div>
                 <hr className='mt-[70px] mb-[57px]'/>
