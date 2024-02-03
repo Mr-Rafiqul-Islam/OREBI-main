@@ -21,13 +21,13 @@ function My_Acoount() {
                 <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Others' className='text-base text-third'/></div>
                 <div className="col-span-3"></div>
 
-                <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Dashboard' className='text-base text-third'/></div>
+                <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Downloads' className='text-base text-third'/></div>
                 <div className="col-span-3"></div>
 
-                <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Dashboard' className='text-base text-third'/></div>
+                <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Addresses' className='text-base text-third'/></div>
                 <div className="col-span-3"></div>
 
-                <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Dashboard' className='text-base text-third'/></div>
+                <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Account details' className='text-base text-third'/></div>
                 <div className="col-span-3"></div>
 
                 <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Dashboard' className='text-base text-third'/></div>
