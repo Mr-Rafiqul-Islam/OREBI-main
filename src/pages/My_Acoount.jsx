@@ -19,7 +19,7 @@ function My_Acoount() {
                 <div className="col-span-3"><Paragraph text='Hello admin (not admin? Log out)'/></div>
 
                 <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Others' className='text-base text-third'/></div>
-                <div className="col-span-3"></div>
+                <div className="col-span-3"><Paragraph text='From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.' className=''/></div>
 
                 <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Downloads' className='text-base text-third'/></div>
                 <div className="col-span-3"></div>
@@ -30,7 +30,7 @@ function My_Acoount() {
                 <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Account details' className='text-base text-third'/></div>
                 <div className="col-span-3"></div>
 
-                <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Dashboard' className='text-base text-third'/></div>
+                <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Logout' className='text-base text-third'/></div>
                 <div className="col-span-3"></div>
 
             </div>
