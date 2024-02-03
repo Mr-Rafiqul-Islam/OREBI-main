@@ -16,10 +16,10 @@ function My_Acoount() {
             <div className="w-[1193px] grid grid-cols-4 gap-10">
                 
                 <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Dashboard' className='text-base'/></div>
-                <div className="col-span-3"><Paragraph text='Hello admin (not admin? Log out)'/></div>
+                <div className="col-span-3"><Paragraph text='Hello admin (not admin? Log out)' className='text-base text-primary font-regular'/></div>
 
                 <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Others' className='text-base text-third'/></div>
-                <div className="col-span-3"><Paragraph text='From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.' className=''/></div>
+                <div className="col-span-3"><Paragraph text='From your account dashboard you can view your recent orders, manage your shipping and billing addresses, and edit your password and account details.' className='text-base text-primary font-regular'/></div>
 
                 <div className="border-b-2 pb-[30px] border-[#F0F0F0]"> <Subheading text='Downloads' className='text-base text-third'/></div>
                 <div className="col-span-3"></div>
