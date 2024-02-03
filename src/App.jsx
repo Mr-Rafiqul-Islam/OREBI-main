@@ -14,6 +14,7 @@ import Journal from "./pages/Journal";
 import Login from "./pages/Login";
 import UserPopup from "./components/layout/UserPopup";
 import SignUp from "./pages/SignUp";
+import My_Acoount from "./pages/My_Acoount";
 
 
 const router = createBrowserRouter(
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
         <Route path='/login' element={<Login/>}/>
         <Route path='/sign-up' element={<SignUp/>}/>
         <Route path='/user' element={<UserPopup/>}/>
+        <Route path='/my-account' element={<My_Acoount/>}/>
         <Route path='*' element={<Error/>}/>
       </Route>
     </Route>

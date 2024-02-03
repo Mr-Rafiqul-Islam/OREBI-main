@@ -8,7 +8,12 @@ import Button from '../components/Button'
 
 function My_Acoount() {
   return (
-    <div>My_Acoount</div>
+    <section className='mt-[124px] mb-[140px]'>
+        <Container>
+            <Heading text='Login' className='text-5xl font-bold text-primary'/>
+            <Breadcrumb/>
+        </Container>
+    </section> 
   )
 }
 
