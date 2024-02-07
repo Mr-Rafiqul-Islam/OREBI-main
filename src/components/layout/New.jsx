@@ -7,13 +7,25 @@ import p1 from '../../assets/np1.png'
 import p2 from '../../assets/np2.png'
 import p3 from '../../assets/np3.png'
 import p4 from '../../assets/np4.png'
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const New = () => {
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+  };
   return (
     <section className='mb-[118px]'>
         <Container>
             <Heading text='New Arrivals' className="text-primary text-[39px] font-semibold mb-12"/>
-            <Flex className='gap-10'>
+            
+            <Slider {...settings} className='gap-10'>
+
               <div className="w-1/4">
                 <Product src={p1} batch='New' title='Basic Crew Neck Tee' price='$44.00' color='Black'/>
               </div>
@@ -26,7 +38,8 @@ const New = () => {
               <div className="w-1/4">
                 <Product src={p4} batch='New' title='Basic Crew Neck Tee' price='$44.00' color='Black'/>
               </div>
-            </Flex>
+            </Slider>
+            
         </Container>
     </section>
   )

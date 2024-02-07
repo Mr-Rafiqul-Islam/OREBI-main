@@ -4,7 +4,6 @@ import Heading from '../components/Heading'
 import Breadcrumb from '../components/Breadcrumb'
 import Paragraph from '../components/Paragraph'
 import Input from '../components/Input'
-import Button from '../components/Button'
 import Subheading from '../components/Subheading'
 
 function My_Acoount() {
