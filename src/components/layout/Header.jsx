@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Container from '../Container'
 import Flex from '../Flex'
 import Image from '../Image'
@@ -7,11 +7,34 @@ import cart from '../../assets/Icon_cart.png'
 import Bar from '../Icons/Bar'
 import Search from '../Icons/Search'
 import UserPopup from './UserPopup'
+import Close from '../Close'
 
 
 const Header = () => {
 
     const [open, setOpen] = useState(false)
+
+    const handleClose = () => {
+        setOpen(false);
+      };
+
+    // let menuRef = useRef();
+
+    // useEffect(() => {
+    //     let handler = (e)=>{
+    //     if(!menuRef.current.contains(e.target)){
+    //         setOpen(false);
+    //         console.log(menuRef.current);
+    //     }      
+    //     };
+
+    //     document.addEventListener('mousedown', handler);
+        
+
+    //     return() =>{
+    //     document.removeEventListener('mousedown', handler);
+    //     }
+    // });
   return (
     <section className='bg-header py-[25px] border-b-2 border-borderColor'>
         <Container>
@@ -35,7 +58,13 @@ const Header = () => {
                 <div className="w-1/3">
                     <Flex className="justify-end">
                     <button onClick={()=>{setOpen(!open)}}><Image src={user} className='me-[41px]'/></button>
-                    <UserPopup className={open? 'active opacity-100 visible translate-y-0 transition-all' : 'inactive opacity-0 hidden translate-y-5 transition-all'}/>
+                    {open && (
+                        <Close onClose={handleClose}>
+                            <UserPopup className={open ? 'active opacity-100 visible translate-y-0 transition-all' : 'inactive opacity-0 hidden translate-y-5 transition-all'}/>
+                        </Close>
+                    )
+                    }
+                    
                     <Image src={cart} className=''/>
                     </Flex>
                 </div>
