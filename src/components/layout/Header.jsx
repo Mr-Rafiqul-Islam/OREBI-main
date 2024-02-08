@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '../Container'
 import Flex from '../Flex'
 import Image from '../Image'
@@ -6,9 +6,12 @@ import user from '../../assets/Icon_user.png'
 import cart from '../../assets/Icon_cart.png'
 import Bar from '../Icons/Bar'
 import Search from '../Icons/Search'
+import UserPopup from './UserPopup'
 
 
 const Header = () => {
+
+    const [open, setOpen] = useState(false)
   return (
     <section className='bg-header py-[25px] border-b-2 border-borderColor'>
         <Container>
@@ -31,7 +34,8 @@ const Header = () => {
                 </div>
                 <div className="w-1/3">
                     <Flex className="justify-end">
-                    <Image src={user} className='me-[41px]'/>
+                    <button onClick={()=>{setOpen(!open)}}><Image src={user} className='me-[41px]'/></button>
+                    <UserPopup className={open? 'active opacity-100 visible translate-y-0 transition-all' : 'inactive opacity-0 hidden translate-y-5 transition-all'}/>
                     <Image src={cart} className=''/>
                     </Flex>
                 </div>
