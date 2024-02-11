@@ -7,13 +7,20 @@ import cart from '../../assets/Icon_cart.png'
 import Bar from '../Icons/Bar'
 import Search from '../Icons/Search'
 import UserPopup from './UserPopup'
+import UserPopup2 from './UserPopup2'
 import Close from '../Close'
+import MenuCategory from '../MenuCategory'
 
 
 const Header = () => {
 
     const [open, setOpen] = useState(false)
+    const [open2, setOpen2] = useState(false)
+    const [menu, setMenu] = useState(false)
 
+    const menuClose = () => {
+        setMenu(false);
+      };
     const handleClose = () => {
         setOpen(false);
       };
@@ -40,12 +47,21 @@ const Header = () => {
         <Container>
             <Flex className="items-center">
                 <div className="w-1/3">
+                    <button onClick={()=>{setMenu(!menu)}}>
                     <Flex className='items-center gap-2.5'>
                         <Bar/>
                         <p className='text-primary font-dmsans text-[14px] font-normal'>
                         Shop by Category
                         </p>
                     </Flex>
+                    </button>
+                    {menu && (
+                        <Close onClose={menuClose}>
+                            <MenuCategory/>
+                        </Close>
+                    )
+
+                    }
                 </div>
                 <div className="w-1/3 relative">
                     <input type="text" placeholder='Search Products' className='w-full py-4 ps-[21px] placeholder:text-[14px] placeholder:text-[#C4C4C4] focus:outline-none'/>
@@ -60,12 +76,15 @@ const Header = () => {
                     <button onClick={()=>{setOpen(!open)}}><Image src={user} className='me-[41px]'/></button>
                     {open && (
                         <Close onClose={handleClose}>
-                            <UserPopup className={open ? 'active opacity-100 visible translate-y-0 transition-all' : 'inactive opacity-0 hidden translate-y-5 transition-all'}/>
+                            <UserPopup />
                         </Close>
                     )
                     }
                     
-                    <Image src={cart} className=''/>
+                    <button onClick={()=>{setOpen2(!open2)}}><Image src={cart} className=''/></button>
+                    {open2 && (
+                        <UserPopup2 className=''/>
+                    )}
                     </Flex>
                 </div>
             </Flex>
