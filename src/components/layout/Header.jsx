@@ -10,6 +10,7 @@ import UserPopup from './UserPopup'
 import UserPopup2 from './UserPopup2'
 import Close from '../Close'
 import MenuCategory from '../MenuCategory'
+import AddToCart from '../AddToCart'
 
 
 const Header = () => {
@@ -23,6 +24,9 @@ const Header = () => {
       };
     const handleClose = () => {
         setOpen(false);
+      };
+    const handleClose2 = () => {
+        setOpen2(false);
       };
 
     // let menuRef = useRef();
@@ -83,7 +87,9 @@ const Header = () => {
                     
                     <button onClick={()=>{setOpen2(!open2)}}><Image src={cart} className=''/></button>
                     {open2 && (
-                        <UserPopup2 className=''/>
+                        <Close onClose={handleClose2}>
+                            <AddToCart className='absolute top-[165px] right-[100px]'/>
+                        </Close>
                     )}
                     </Flex>
                 </div>

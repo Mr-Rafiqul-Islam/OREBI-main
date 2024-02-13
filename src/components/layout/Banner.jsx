@@ -9,7 +9,7 @@ import Two from '../Icons/Two'
 const Banner = () => {
   return (
     <section className=''>
-        <a href="#" target="_blank"><Image src={banner} className="w-full"/></a>
+        <a href="#" ><Image src={banner} className="w-full"/></a>
         <div className='py-[30px] border-y-2 border-[#F0F0F0]'>
         <Container>
             <Flex className="items-center">
