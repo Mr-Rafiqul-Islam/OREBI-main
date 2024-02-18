@@ -10,21 +10,24 @@ import p4 from '../../assets/np4.png'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import NextArrow from '../Icons/NextArrow'
+import PrevArrow from '../Icons/PrevArrow'
 
 const New = () => {
   var settings = {
-    dots: true,
+    dots: false,
     infinite: true,
-    speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />
   };
   return (
     <section className='mb-[118px]'>
         <Container>
             <Heading text='New Arrivals' className="text-primary text-[39px] font-semibold mb-12"/>
             
-            <Slider {...settings} className='gap-10'>
+            <Slider {...settings} >
 
               <div className="w-1/4">
                 <Product src={p1} batch='New' title='Basic Crew Neck Tee' price='$44.00' color='Black'/>
