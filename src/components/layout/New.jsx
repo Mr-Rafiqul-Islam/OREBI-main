@@ -23,7 +23,7 @@ const New = () => {
     prevArrow: <PrevArrow />
   };
   return (
-    <section className='mb-[118px]'>
+    <section className='mb-[118px] new'>
         <Container>
             <Heading text='New Arrivals' className="text-primary text-[39px] font-semibold mb-12"/>
             
