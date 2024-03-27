@@ -12,13 +12,24 @@ import { RxCross2 } from "react-icons/rx";
 import { FaBars } from "react-icons/fa";
 
 const Navbar = () => {
+  // menu data
+  let menu = [
+    { name: "Home", path: "/" },
+    { name: "Shop", path: "shop" },
+    { name: "Contact", path: "contact" },
+    { name: "About", path: "about" },
+    { name: "Journal", path: "journal" },
+  ];
+  // for active menu
+  const [active, setActive] = useState(0);
+
   // for breadcrumbs
   let dispatch = useDispatch();
 
   let handleBreadcrumb = (name) => {
     dispatch(pageName(name));
   };
-  // for mobile menu 
+  // for mobile menu
   const [menuOpen, setMenuOpen] = useState(false);
   let toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -38,36 +49,20 @@ const Navbar = () => {
           <div className="w-1/3">
             <ul>
               <Flex className="justify-center hidden sm:flex">
-                <List
-                  onClick={() => handleBreadcrumb("Home")}
-                  href="/"
-                  text="Home"
-                  className="text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300"
-                />
-                <List
-                  onClick={() => handleBreadcrumb("Shop")}
-                  href="shop"
-                  text="Shop"
-                  className="text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300"
-                />
-                <List
-                  onClick={() => handleBreadcrumb("Contact")}
-                  href="contact"
-                  text="Contacts"
-                  className="text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300"
-                />
-                <List
-                  onClick={() => handleBreadcrumb("About")}
-                  href="about"
-                  text="About"
-                  className="text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300"
-                />
-                <List
-                  onClick={() => handleBreadcrumb("Journal")}
-                  href="journal"
-                  text="Journal"
-                  className="text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300"
-                />
+                {menu.map(({ name, path }, i) => (
+                  <List
+                    key={i}
+                    onClick={() => {
+                      handleBreadcrumb(name);
+                      setActive(i);
+                    }}
+                    href={path}
+                    text={name}
+                    className={`text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300 ${
+                      active === i ? "!text-primary" : "text-secondary"
+                    }`}
+                  />
+                ))}
               </Flex>
             </ul>
             {/* mobile menu starts */}
@@ -86,36 +81,20 @@ const Navbar = () => {
                 menuOpen ? "left-0" : "left-[-100%]"
               } flex-col justify-center h-fit w-full duration-300 flex text-center absolute bg-white z-40`}
             >
-              <List
-                onClick={() => handleBreadcrumb("Home")}
-                href="/"
-                text="Home"
-                className="text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300"
-              />
-              <List
-                onClick={() => handleBreadcrumb("Shop")}
-                href="shop"
-                text="Shop"
-                className="text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300"
-              />
-              <List
-                onClick={() => handleBreadcrumb("Contact")}
-                href="contact"
-                text="Contacts"
-                className="text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300"
-              />
-              <List
-                onClick={() => handleBreadcrumb("About")}
-                href="about"
-                text="About"
-                className="text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300"
-              />
-              <List
-                onClick={() => handleBreadcrumb("Journal")}
-                href="journal"
-                text="Journal"
-                className="text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300"
-              />
+              {menu.map(({ name, path }, i) => (
+                <List
+                  key={i}
+                  onClick={() => {
+                    handleBreadcrumb(name);
+                    setActive(i);
+                  }}
+                  href={path}
+                  text={name}
+                  className={`text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300 ${
+                    active === i ? "!text-primary" : "text-secondary"
+                  }`}
+                />
+              ))}
             </ul>
             {/* mobile menu ends*/}
           </div>
