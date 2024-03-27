@@ -30,7 +30,7 @@ const Banner = () => {
           borderRadius: "10px",
           padding: "10px",
           top:"45%",
-          left:"150px",
+          left:"10%",
         }}
       >
         <ul

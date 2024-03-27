@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
 
-const Batch = ({className,text}) => {
+const Batch = ({ className, text }) => {
   return (
-    <div className={`${className} font-dmsans text-sm font-bold text-white bg-primary px-8 py-2.5`}>{text}</div>
-  )
-}
+    <div
+      className={`${
+        text ? "block" : "hidden"
+      } font-dmsans text-sm font-bold text-white bg-primary px-8 py-2.5 ${className}`}
+    >
+      {text}
+    </div>
+  );
+};
 
-export default Batch
+export default Batch;
