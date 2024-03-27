@@ -54,7 +54,7 @@ const Header = () => {
                 </p>
               </Flex>
             </button>
-            {menu && <MenuCategory />}
+            {menu && <MenuCategory className={`z-50`}/>}
           </div>
           <div className="w-1/3 relative">
             <input
@@ -73,13 +73,13 @@ const Header = () => {
               <button ref={userRef}>
                 <Image src={user} className="me-[41px]" />
               </button>
-              {userOpen && <UserPopup />}
+              {userOpen && <UserPopup className={`z-50`}/>}
 
               <button ref={cartRef}>
                 <Image src={cart} className="" />
               </button>
               {cartOpen && (
-                <AddToCart className="absolute top-[165px] right-[100px]" />
+                <AddToCart className="absolute top-[165px] right-[100px] z-50" />
               )}
             </Flex>
           </div>

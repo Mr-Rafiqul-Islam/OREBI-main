@@ -14,24 +14,31 @@ const Banner = () => {
   const settings = {
     dots: true,
     infinite: true,
+    autoplay: true,
+    speed: 1000,
+    autoplaySpeed: 2500,
+    cssEase: "linear",
     slidesToShow: 1,
     slidesToScroll: 1,
     vertical: true,
     verticalSwiping: true,
+    swipeToSlide: true,
     appendDots: (dots) => (
       <div
         style={{
+          position:"absolute",
           borderRadius: "10px",
           padding: "10px",
+          top:"45%",
+          left:"150px",
         }}
       >
         <ul
           style={{
-            position: "absolute",
             margin: "0px",
-            left: "0px",
             display:"flex",
-            flexDirection:"column"
+            flexDirection:"column",
+            gap:"20px"
           }}
         >
           {dots}
@@ -42,9 +49,11 @@ const Banner = () => {
       <div
         style={{
           width: "30px",
-          padding: "10px 0px",
+          height:"40px",
           color: "rgb(38, 38, 38)",
-          borderRight: "2px blue solid",
+          borderRight: "3px white solid",
+          display:"grid",
+          placeContent:"center"
         }}
       >
         0{i + 1}
