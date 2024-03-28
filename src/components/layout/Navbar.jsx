@@ -59,7 +59,7 @@ const Navbar = () => {
                     href={path}
                     text={name}
                     className={`text-secondary hover:text-primary text-[14px] mx-5 font-normal duration-300 ${
-                      active === i ? "!text-primary" : "text-secondary"
+                      active === i ? "!text-primary !font-bold" : "text-secondary"
                     }`}
                   />
                 ))}
