@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import Container from "../Container";
 import Flex from "../Flex";
 import Image from "../Image";
-import user from "../../assets/Icon_user.png";
-import cart from "../../assets/Icon_cart.png";
+import user from "../../assets/Icon_user.svg";
+import cart from "../../assets/Icon_cart.svg";
 import Bar from "../Icons/Bar";
 import Search from "../Icons/Search";
 import UserPopup from "./UserPopup";
@@ -44,19 +44,19 @@ const Header = () => {
   return (
     <section className="bg-header py-[25px] border-b-2 border-borderColor">
       <Container>
-        <Flex className="items-center">
-          <div className="w-1/3">
-            <button ref={menuRef}>
+        <Flex className="items-center sm:flex-row flex-col">
+          <div className="w-full sm:w-1/3">
+            <div className="cursor-pointer" ref={menuRef}>
               <Flex className="items-center gap-2.5">
                 <Bar />
                 <p className="text-primary font-dmsans text-[14px] font-normal">
                   Shop by Category
                 </p>
               </Flex>
-            </button>
+            </div>
             {menu && <MenuCategory className={`z-50`}/>}
           </div>
-          <div className="w-1/3 relative">
+          <div className="w-full py-3 sm:py-0 sm:w-1/3 relative">
             <input
               type="text"
               placeholder="Search Products"
@@ -68,7 +68,7 @@ const Header = () => {
               </a>
             </div>
           </div>
-          <div className="w-1/3">
+          <div className="w-full mt-2 sm:mt-0 sm:w-1/3">
             <Flex className="justify-end">
               <button ref={userRef}>
                 <Image src={user} className="me-[41px]" />
@@ -79,7 +79,7 @@ const Header = () => {
                 <Image src={cart} className="" />
               </button>
               {cartOpen && (
-                <AddToCart className="absolute top-[165px] right-[100px] z-50" />
+                <AddToCart className="absolute top-[210px] sm:top-[165px] right-[] z-50" />
               )}
             </Flex>
           </div>
