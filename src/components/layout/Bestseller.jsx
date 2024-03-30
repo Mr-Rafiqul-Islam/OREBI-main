@@ -10,20 +10,20 @@ import p4 from '../../assets/bp4.png'
 
 const Bestseller = () => {
   return (
-    <section className='mb-[118px]'>
+    <section className=' mb-[80px] md:mb-[118px]'>
         <Container>
             <Heading text='Our Bestsellers' className="text-primary text-[39px] font-semibold mb-12"/>
-            <Flex className='gap-10'>
-              <div className="w-1/4">
+            <Flex className='flex-wrap lg:flex-nowrap gap-8 justify-center lg:gap-9 xl:gap-10'>
+              <div className="w-full sm:w-[45%] lg:w-1/4">
                 <Product src={p1} batch='New' title='Basic Crew Neck Tee' price='$44.00' color='Black'/>
               </div>
-              <div className="w-1/4">
+              <div className="w-full sm:w-[45%] lg:w-1/4">
                 <Product src={p2} batch='New' title='Basic Crew Neck Tee' price='$44.00' color='Black'/>
               </div>
-              <div className="w-1/4">
+              <div className="w-full sm:w-[45%] lg:w-1/4">
                 <Product src={p3} batch='New' title='Basic Crew Neck Tee' price='$44.00' color='Black'/>
               </div>
-              <div className="w-1/4">
+              <div className="w-full sm:w-[45%] lg:w-1/4">
                 <Product src={p4} batch='New' title='Basic Crew Neck Tee' price='$44.00' color='Black'/>
               </div>
             </Flex>
