@@ -22,15 +22,15 @@ const Product = ({src,batch,title,price,color}) => {
             {/* =====hover part start======= */}
             <div className="absolute bg-white w-full py-6 pe-[30px] -bottom-[160px] left-0 group-hover:bottom-0 duration-500">
                 <Flex className="justify-end items-center gap-[15px]">
-                    <Heading text="Add to Wish List" className='text-secondary text-base font-normal'/>
+                    <Heading text="Add to Wish List" className='text-secondary text-sm lg:text-base font-normal'/>
                     <FaHeart />
                 </Flex>
                 <Flex className="justify-end items-center gap-[15px] my-5">
-                    <Heading text="Compare" className='text-secondary text-base font-normal'/>
+                    <Heading text="Compare" className='text-secondary text-sm lg:text-base font-normal'/>
                     <GrPowerCycle />
                 </Flex>
                 <Flex className="justify-end items-center gap-[15px]">
-                    <Heading text="Add to Cart" className='text-primary text-base font-bold'/>
+                    <Heading text="Add to Cart" className='text-primary text-sm lg:text-base font-bold'/>
                     <FaShoppingCart />
                 </Flex>
             </div>
@@ -41,10 +41,10 @@ const Product = ({src,batch,title,price,color}) => {
         {/* =========lower part of card========= */}
         <div className="w-full pt-[24px]">
             <div className='flex justify-between'>
-            <Heading text={title} className='font-bold text-xl text-primary'/>
-            <Heading text={price} className='font-normal text-base text-secondary'/>
+            <Heading text={title} className='font-bold text-base lg:text-xl text-primary'/>
+            <Heading text={price} className='font-normal text-sm lg:text-base text-secondary'/>
             </div>
-            <Heading className='font-normal text-base text-secondary mt-[15px]' text={color}/>
+            <Heading className='font-normal text-sm lg:text-base text-secondary mt-[15px]' text={color}/>
         </div>
         {/* =========lower part of card end========= */}
     </div>
