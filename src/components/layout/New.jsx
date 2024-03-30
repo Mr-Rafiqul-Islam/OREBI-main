@@ -20,7 +20,40 @@ const New = () => {
     slidesToShow: 4,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />
+    prevArrow: <PrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+        }
+      },
+      {
+        breakpoint: 767,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
   };
   return (
     <section className='mb-[118px] new'>
@@ -29,16 +62,16 @@ const New = () => {
             
             <Slider {...settings} >
 
-              <div className="w-1/4">
+              <div className="!w-[100%]">
                 <Product src={p1} batch='New' title='Basic Crew Neck Tee' price='$44.00' color='Black'/>
               </div>
-              <div className="w-1/4">
+              <div className="!w-[100%]">
                 <Product src={p2} batch='New' title='Basic Crew Neck Tee' price='$44.00' color='Black'/>
               </div>
-              <div className="w-1/4">
+              <div className="!w-[100%]">
                 <Product src={p3} batch='New' title='Basic Crew Neck Tee' price='$44.00' color='Black'/>
               </div>
-              <div className="w-1/4">
+              <div className="!w-[100%]">
                 <Product src={p4} batch='New' title='Basic Crew Neck Tee' price='$44.00' color='Black'/>
               </div>
             </Slider>
