@@ -15,7 +15,7 @@ const Product = ({src,batch,title,price,color}) => {
         <div className="w-full relative overflow-hidden">
 
             {/* ===========image part start====== */}
-            <Image src={src} className='w-full'/>
+            <Image src={src} className='w-[370px] h-[370px]'/>
             <Batch className='absolute top-5 left-6' text={batch}/>
             {/* ===========image part end====== */}
 

@@ -4,7 +4,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import Home from "./Pages/Home";
+import Home from "./pages/Home";
 import RootLayout from "./components/layout/RootLayout";
 import Contact from "./pages/Contact";
 import Error from "./pages/Error";
@@ -15,6 +15,7 @@ import Login from "./pages/Login";
 import UserPopup from "./components/layout/UserPopup";
 import SignUp from "./pages/SignUp";
 import My_Acoount from "./pages/My_Acoount";
+import { ContextApi } from "./components/ContextApi";
 
 
 const router = createBrowserRouter(
@@ -41,7 +42,9 @@ function App() {
 
   return (
     <>
+      <ContextApi>
       <RouterProvider router={router} />
+      </ContextApi>
     </>
   )
 }
