@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import Product from "../Product";
 import { ApiData } from "../ContextApi";
 import PaginationNum from "../PaginationNum";
+import { Link } from "react-router-dom";
 
 function ProductShop() {
   // for api calling
@@ -24,6 +25,7 @@ function ProductShop() {
     <div className="w-full">
       <div className="grid grid-cols-3 gap-10">
         {allPage.map((item) => (
+          <Link to={`/shop/${item.id}`}>
           <Product
             key={item.id}
             title={item.title}
@@ -32,6 +34,7 @@ function ProductShop() {
             batch={`-${item.discountPercentage}%`}
             src={item.thumbnail}
           />
+          </Link>
         ))}
       </div>
       <PaginationNum

@@ -16,6 +16,7 @@ import UserPopup from "./components/layout/UserPopup";
 import SignUp from "./pages/SignUp";
 import My_Acoount from "./pages/My_Acoount";
 import { ContextApi } from "./components/ContextApi";
+import ProductDetails from "./pages/ProductDetails";
 
 
 const router = createBrowserRouter(
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/shop' element={<Shop/>}/>
+        <Route path='/shop/:id' element={<ProductDetails/>}/>
         <Route path='/journal' element={<Journal/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/sign-up' element={<SignUp/>}/>

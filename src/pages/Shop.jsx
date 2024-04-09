@@ -16,9 +16,9 @@ const Shop = () => {
     <section className='pt-[124px] pb-[140px]'>
         <Container>
           <Flex>
-            <h1>{data}</h1>
-            <div className="px-2">&gt;</div>
-            <h1 className='first-letter:uppercase'>{breadC}</h1>
+            <h1 className='font-dmsans text-xs text-third font-normal'>{data}</h1>
+            <div className="px-2 font-dmsans text-xs text-third font-normal">&gt;</div>
+            <h1 className='first-letter:uppercase font-dmsans text-xs text-third font-normal'>{breadC}</h1>
           </Flex>
           <Heading text='Product' className='text-5xl font-bold text-primary'/>
           <Breadcrumb/>
