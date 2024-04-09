@@ -11,7 +11,7 @@ import Paragraph from "../components/Paragraph";
 import Subheading from "../components/Subheading";
 import ColorOval from "../assets/ColorOval";
 import CustomSelector from "../components/CustomSelector";
-
+import Button from "../components/Button";
 function ProductDetails() {
   const [data, setData] = useState([]);
 
@@ -98,7 +98,20 @@ function ProductDetails() {
             </Flex>
             <Flex className={`items-center gap-x-4`}>
               <Subheading text={`Size:`} className={`me-2`} />
-              <CustomSelector/>
+              <CustomSelector />
+            </Flex>
+            <Flex className={`items-center gap-x-4`}>
+              <Subheading text={`Status:`} className={`me-2`} />
+              <Paragraph
+                text={`${data.stock} Available in Stock`}
+                className={`font-dmsans text-base text-secondary`}
+              />
+            </Flex>
+          </div>
+          <div className="py-5 w-[780px] border-b">
+            <Flex className={`items-center gap-x-4`}>
+              <Button text={`Add To Wish List`} className={`bg-white text-black hover:bg-black hover:text-white font-dmsans text-sm font-bold duration-500 py-4 px-8 border border-primary`}/>
+              <Button text={`Add To Cart`} className={`hover:bg-white hover:text-black bg-black text-white font-dmsans text-sm font-bold duration-500 py-4 px-10 border border-primary`}/>
             </Flex>
           </div>
         </Container>
