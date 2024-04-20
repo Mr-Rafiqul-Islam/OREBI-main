@@ -10,7 +10,8 @@ export const breadcrumbSlice = createSlice({
       pageName: (state, action)=> {
             state.currentname = state.previousname
             state.previousname = action.payload
-      }
+      },
+      
     },
   })
   

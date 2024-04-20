@@ -12,6 +12,10 @@ import Subheading from "../components/Subheading";
 import ColorOval from "../assets/ColorOval";
 import CustomSelector from "../components/CustomSelector";
 import Button from "../components/Button";
+import Accordion from "../components/Accordion";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../slices/singleSlice";
+
 function ProductDetails() {
   const [data, setData] = useState([]);
 
@@ -24,7 +28,7 @@ function ProductDetails() {
   useEffect(() => {
     getAPiId();
   }, []);
-  console.log(data);
+  // console.log(data);
 
   //   for breadcrumbs
   let dataa = useSelector((state) => state.breadcrumb.currentname);
@@ -41,6 +45,11 @@ function ProductDetails() {
       <FaRegStar />
     );
   });
+  // for sending product data to cart
+  let dispatch = useDispatch();
+  let handleProduct = (item) => {
+    dispatch(addToCart({...item, qun:1}));
+  };
   return (
     <>
       <section className="pt-[124px] pb-10">
@@ -81,7 +90,9 @@ function ProductDetails() {
             </div>
             <Flex className={`items-center my-4 gap-x-3`}>
               <Paragraph
-                text={`$${data.price / 1 + data.discountPercentage}`}
+                text={`$${Math.ceil(
+                  data.price / (1 - data.discountPercentage / 100)
+                )}`}
                 className={`text-secondary line-through text-base`}
               />
               <Subheading text={`$${data.price}`} />
@@ -110,9 +121,19 @@ function ProductDetails() {
           </div>
           <div className="py-5 w-[780px] border-b">
             <Flex className={`items-center gap-x-4`}>
-              <Button text={`Add To Wish List`} className={`bg-white text-black hover:bg-black hover:text-white font-dmsans text-sm font-bold duration-500 py-4 px-8 border border-primary`}/>
-              <Button text={`Add To Cart`} className={`hover:bg-white hover:text-black bg-black text-white font-dmsans text-sm font-bold duration-500 py-4 px-10 border border-primary`}/>
+              <Button
+                text={`Add To Wish List`}
+                className={`bg-white text-black hover:bg-black hover:text-white font-dmsans text-sm font-bold duration-500 py-4 px-8 border border-primary`}
+              />
+              <Button
+                onClick={() => handleProduct(data)}
+                text={`Add To Cart`}
+                className={`hover:bg-white hover:text-black bg-black text-white font-dmsans text-sm font-bold duration-500 py-4 px-10 border border-primary`}
+              />
             </Flex>
+          </div>
+          <div className="py-5 w-[780px] border-b">
+            <Accordion />
           </div>
         </Container>
       </section>
