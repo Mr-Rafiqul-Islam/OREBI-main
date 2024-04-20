@@ -5,11 +5,13 @@ import Subheading from '../components/Subheading'
 import { ImCross } from "react-icons/im";
 import Button from './Button';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeProduct } from '../slices/singleSlice';
 
 
 function AddToCart({className}) {
   let data = useSelector((state)=>state.singleproduct.cartitem)
+  let dispatch = useDispatch()
   return (
     <div className={`w-[360px] h-auto bg-white border border-[#F0F0F0] ${className}`}>
       {data.map((item,i)=>(
@@ -20,7 +22,7 @@ function AddToCart({className}) {
                         <Subheading text={item.title} className='text-sm font-bold'/>
                         <Subheading text={`$${item.price}`} className='text-sm font-bold'/>
                     </div>
-                    <ImCross className='cursor-pointer'/>
+                    <ImCross onClick={()=>dispatch(removeProduct(i))} className='cursor-pointer'/>
                 </div>
         </div>
       ))

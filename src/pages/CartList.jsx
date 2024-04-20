@@ -1,15 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Container from "../components/Container";
 import Flex from "../components/Flex";
 import Heading from "../components/Heading";
 import Breadcrumb from "../components/Breadcrumb";
 import { ImCross } from "react-icons/im";
 import Image from "../components/Image";
-import cartpic from "../assets/cartthumbnail.png";
 import Subheading from "../components/Subheading";
 import Paragraph from "../components/Paragraph";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import { decrementProd, incrementProd, removeProduct } from "../slices/singleSlice";
 
 function Cartlist() {
   // for dynamic bredcrumb
@@ -18,7 +18,8 @@ function Cartlist() {
 
   // for getting info of cart product
   let info = useSelector((state) => state.singleproduct.cartitem);
-  console.log(info);
+  // console.log(info);
+  let dispatch = useDispatch()
   return (
     <section className="pt-[124px] pb-[131px]">
       <Container>
@@ -52,7 +53,7 @@ function Cartlist() {
 
           <div className="grid grid-cols-4 px-4 py-7 border items-center" key={i}>
             <div className="flex items-center">
-              <button>
+              <button onClick={()=>dispatch(removeProduct(i))}>
                 <ImCross className="text-sm" />
               </button>
               <Image src={item.thumbnail} className={`h-[100px] w-[100px] mx-5`} />
@@ -61,21 +62,24 @@ function Cartlist() {
             <Subheading text={`$${item.price}`} />
             <div className="quantity">
               <div className="flex justify-between items-center px-2 border w-[139px] h-9">
-                <button>
+                <button onClick={()=>dispatch(decrementProd(i))}>
                   <FaMinus className="text-sm" />
                 </button>
-                <Paragraph text={`1`} />
-                <button>
+                <Paragraph text={item.qun} />
+                <button onClick={()=>dispatch(incrementProd(i))}>
                   <FaPlus className="text-sm" />
                 </button>
               </div>
             </div>
-            <Subheading text={`$44.00`} />
+            <Subheading text={item.price*item.qun} />
           </div>
           ))
           }
         </div>
         {/* cartlist end here */}
+        <Flex className={` px-4 py-8 items-center`}>
+
+        </Flex>
       </Container>
     </section>
   );
