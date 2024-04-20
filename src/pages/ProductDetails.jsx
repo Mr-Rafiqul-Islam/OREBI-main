@@ -50,6 +50,8 @@ function ProductDetails() {
   let handleProduct = (item) => {
     dispatch(addToCart({...item, qun:1}));
   };
+  // for customselector
+  let option =["M","L","XL","XXL"]
   return (
     <>
       <section className="pt-[124px] pb-10">
@@ -109,7 +111,7 @@ function ProductDetails() {
             </Flex>
             <Flex className={`items-center gap-x-4`}>
               <Subheading text={`Size:`} className={`me-2`} />
-              <CustomSelector />
+              <CustomSelector option={option} defaultvalue="S"/>
             </Flex>
             <Flex className={`items-center gap-x-4`}>
               <Subheading text={`Status:`} className={`me-2`} />

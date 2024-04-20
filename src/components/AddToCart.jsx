@@ -12,6 +12,15 @@ import { removeProduct } from '../slices/singleSlice';
 function AddToCart({className}) {
   let data = useSelector((state)=>state.singleproduct.cartitem)
   let dispatch = useDispatch()
+   // for sum total price
+   const { totalprice, totalquantity } = data.reduce(
+    (acc, item) => {
+      acc.totalprice += item.price * item.qun;
+      acc.totalquantity += item.qun;
+      return acc;
+    },
+    { totalprice: 0, totalquantity: 0 }
+  );
   return (
     <div className={`w-[360px] h-auto bg-white border border-[#F0F0F0] ${className}`}>
       {data.map((item,i)=>(
@@ -28,7 +37,7 @@ function AddToCart({className}) {
       ))
       }
         <div className="h-[120px] p-[20px] w-full bg-white ">
-              <p className='text-base text-third'>SubTotal: <Subheading text='$44.00' className='inline-block text-sm font-bold'/></p>
+              <p className='text-base text-third'>SubTotal: <Subheading text={`$${totalprice}`} className='inline-block text-sm font-bold'/></p>
               <div className="w-full mt-3 flex justify-between">
                <Link to='/cart-list'><Button text='View Cart' className='py-4 px-10 bg-white text-primary border border-primary hover:bg-primary hover:text-white duration-300'/></Link>
                <Link to='/checkout'><Button text='Checkout' className='py-4 px-10 bg-white text-primary border border-primary hover:bg-primary hover:text-white duration-300'/></Link>
