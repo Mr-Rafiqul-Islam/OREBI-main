@@ -18,7 +18,7 @@ import CustomSelector from "../components/CustomSelector";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 
-function Cartlist() {
+function Cart() {
   // for dynamic bredcrumb
   let data = useSelector((state) => state.breadcrumb.currentname);
   let breadC = window.location.pathname.replace("/", "").replace("-", " ");
@@ -142,4 +142,4 @@ function Cartlist() {
   );
 }
 
-export default Cartlist;
+export default Cart;

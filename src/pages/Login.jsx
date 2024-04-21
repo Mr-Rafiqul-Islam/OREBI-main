@@ -5,6 +5,7 @@ import Breadcrumb from '../components/Breadcrumb'
 import Paragraph from '../components/Paragraph'
 import Input from '../components/Input'
 import Button from '../components/Button'  
+import { Link } from 'react-router-dom'
 
 function Login() {
   return (
@@ -26,7 +27,9 @@ function Login() {
             <Heading text='New Customer' className='text-[39px] font-bold text-primary mt-[] mb-[42px]'/> 
             
             <Paragraph text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the." className='text-third text-base font-normal mb-[41px] mt-[38px] w-[644px] leading-[30px]' />
-            <Button className="py-4 ps-[65px] pe-[71px]" text="Continue" />
+            <Link to={`/sign-up`}>
+            <Button className="py-4 ps-[65px] pe-[71px]" text="Sign UP" />
+            </Link>
         </Container>
     </section>
   )
