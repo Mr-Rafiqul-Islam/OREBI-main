@@ -6,24 +6,52 @@ import Paragraph from "../components/Paragraph";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
 
 function SignUp() {
+  // for authentication
+  const auth = getAuth();
+  const db = getDatabase();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailErr, setEmailErr] = useState("");
+
   let handleName = (e) => {
     setName(e.target.value);
   };
   let handleEmail = (e) => {
     setEmail(e.target.value);
+    setEmailErr("");
   };
   let handlePass = (e) => {
     setPassword(e.target.value);
   };
-  let handleSubmit = (e)=>{
+  let handleSubmit = (e) => {
     e.preventDefault();
-    console.log("ami parci");
-  }
+
+    if (!email) {
+      setEmailErr("Please fill it with your Email");
+    }
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((user) => {
+        set(ref(db, "users/" + user.user.uid), {
+          username: name,
+          email: email,
+        })
+      })
+      .then(() => {
+        console.log("submit");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  };
   return (
     <section className="mt-[124px] mb-[140px]">
       <Container>
@@ -38,7 +66,7 @@ function SignUp() {
           text="Your Personal Details"
           className="text-[39px] font-bold text-primary  mb-[42px]"
         />
-        <form action="" method="post">
+        <form action="">
           <div className="grid grid-cols-3 gap-10 mb-7">
             <Input
               onchange={handleName}
@@ -49,12 +77,15 @@ function SignUp() {
             <Input inputype="text" labelname="Last Name" inputph="Last Name" />
           </div>
           <div className="grid grid-cols-3 gap-10">
-            <Input
-              onchange={handleEmail}
-              inputype="email"
-              labelname="Email Address"
-              inputph="company@domain.com"
-            />
+            <div>
+              <Input
+                onchange={handleEmail}
+                inputype="email"
+                labelname="Email Address"
+                inputph="company@domain.com"
+              />
+              <p>{emailErr}</p>
+            </div>
             <Input
               inputype="tel"
               labelname="Telephone"
@@ -175,7 +206,11 @@ function SignUp() {
             </label>
           </div>
 
-          <Button onClick={handleSubmit} text="Sign in" className="py-4 ps-[77px] pe-[83px]" />
+          <Button
+            onClick={handleSubmit}
+            text="Sign in"
+            className="py-4 ps-[77px] pe-[83px]"
+          />
           <div className="mt-5 font-dmsans text-sm text-secondary">
             Already have an account ? Please
             <Link to="/login" className="text-blue-500">
