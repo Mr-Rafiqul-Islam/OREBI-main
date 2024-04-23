@@ -15,6 +15,7 @@ import Button from "../components/Button";
 import Accordion from "../components/Accordion";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../slices/singleSlice";
+import Breadcrumb from "../components/Breadcrumb";
 
 function ProductDetails() {
   const [data, setData] = useState([]);
@@ -55,7 +56,7 @@ function ProductDetails() {
   return (
     <>
       <section className="pt-[124px] pb-10">
-        <Container>
+        <Container> 
           <Flex className={`mb-[100px]`}>
             <h1 className="font-dmsans text-xs text-third font-normal">
               {dataa}
