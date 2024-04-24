@@ -38,7 +38,7 @@ const Navbar = () => {
     setMenuOpen(false);
   };
   return (
-    <nav className="sm:py-[32px] py-4 sticky top-0 w-full left-0 z-50 bg-white">
+    <nav className="sm:py-[32px] py-4 bg-white">
       <Container>
         <Flex>
           <div className="w-1/3">

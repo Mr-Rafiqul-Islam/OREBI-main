@@ -7,7 +7,6 @@ import Navbar from './Navbar'
 const RootLayout = () => {
   return (
     <>
-    <Navbar/>
     <Header/>
     <Outlet/>
     <Footer/>

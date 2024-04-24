@@ -9,6 +9,7 @@ import Search from "../Icons/Search";
 import UserPopup from "./UserPopup";
 import MenuCategory from "../MenuCategory";
 import AddToCart from "../AddToCart";
+import Navbar from "./Navbar";
 
 const Header = () => {
   const [userOpen, setUserOpen] = useState(false);
@@ -42,6 +43,8 @@ const Header = () => {
     document.addEventListener("click", handler);
   }, [menu,userOpen,cartOpen]);
   return (
+    <div className="sticky top-0 w-full left-0 z-50">
+    <Navbar/>
     <section className="bg-header py-[25px] border-b-2 border-borderColor">
       <Container>
         <Flex className="items-center sm:flex-row flex-col">
@@ -86,6 +89,7 @@ const Header = () => {
         </Flex>
       </Container>
     </section>
+    </div>
   );
 };
 

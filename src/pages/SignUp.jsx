@@ -205,7 +205,6 @@ function SignUp() {
               className="font-dmsans font-regular text-third text-sm ms-3"
               aria-required="true"
             >
-              {" "}
               I have read and agree to the Privacy Policy
             </label>
           </div>
