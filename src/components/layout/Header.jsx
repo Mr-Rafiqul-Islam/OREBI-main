@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Container from "../Container";
 import Flex from "../Flex";
 import Image from "../Image";
@@ -10,6 +10,10 @@ import UserPopup from "./UserPopup";
 import MenuCategory from "../MenuCategory";
 import AddToCart from "../AddToCart";
 import Navbar from "./Navbar";
+import { ApiData } from "../ContextApi";
+import Heading from "../Heading";
+import Subheading from "../Subheading";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [userOpen, setUserOpen] = useState(false);
@@ -37,58 +41,96 @@ const Header = () => {
       } else {
         setCartOpen(false);
       }
-      
     };
 
     document.addEventListener("click", handler);
-  }, [menu,userOpen,cartOpen]);
+  }, [menu, userOpen, cartOpen]);
+
+  //for  searching dynamically product
+
+  const [searchWord, setSearchWord] = useState("");
+  // for api calling
+  let data = useContext(ApiData);
+  const [filteredData, setFilteredData] = useState(data);
+
+  let handlesearch = (e) => {
+    const searchTerms = e.target.value;
+    setSearchWord(searchTerms);
+
+    // for filtering product
+    const filtered = data.filter((product) =>
+      product.title.toLowerCase().includes(searchTerms.toLowerCase())
+    );
+
+    setFilteredData(filtered)
+  };
+  console.log(filteredData);
+
   return (
     <div className="sticky top-0 w-full left-0 z-50">
-    <Navbar/>
-    <section className="bg-header py-[25px] border-b-2 border-borderColor">
-      <Container>
-        <Flex className="items-center sm:flex-row flex-col">
-          <div className="w-full sm:w-1/3">
-            <div className="cursor-pointer" ref={menuRef}>
-              <Flex className="items-center gap-2.5">
-                <Bar />
-                <p className="text-primary font-dmsans text-[14px] font-normal">
-                  Shop by Category
-                </p>
+      <Navbar />
+      <section className="bg-header py-[25px] border-b-2 border-borderColor">
+        <Container>
+          <Flex className="items-center sm:flex-row flex-col">
+            <div className="w-full sm:w-1/3">
+              <div className="cursor-pointer" ref={menuRef}>
+                <Flex className="items-center gap-2.5">
+                  <Bar />
+                  <p className="text-primary font-dmsans text-[14px] font-normal">
+                    Shop by Category
+                  </p>
+                </Flex>
+              </div>
+              {menu && <MenuCategory className={`z-50`} />}
+            </div>
+            <div className="w-full py-3 sm:py-0 sm:w-1/3 relative">
+              <input
+                value={searchWord}
+                onChange={handlesearch}
+                type="text"
+                placeholder="Search Products"
+                className="w-full py-4 ps-[21px] placeholder:text-[14px] placeholder:text-[#C4C4C4] focus:outline-none"
+              />
+              <div className="absolute top-1/2 -translate-y-1/2 right-[17px]">
+                <a href="#" className="">
+                  <Search />
+                </a>
+              </div>
+              <div className="absolute bottom-100 w-full overflow-auto h-96 ">
+              { searchWord && filteredData.map((item,i)=>(
+              <Link to={`/shop/${item.id}`}><div className="h-[120px] w-full bg-[#F5F5F3] px-[21px] py-[22px] flex items-center" key={i} onClick={()=>setSearchWord("")}>
+                <Image src={item.thumbnail} className='me-[22px] h-[100px] w-[100px]'/>
+                <div className="flex justify-between items-center w-full">
+                <div className="flex flex-col gap-y-5">
+                        <Subheading text={item.title} className='text-sm font-bold'/>
+                        <Subheading text={`$${item.price}`} className='text-sm font-bold'/>
+                    </div>
+                </div>
+              </div>
+              </Link>
+            ))
+            }
+              </div>
+            </div>
+            
+            <div className="w-full mt-2 sm:mt-0 sm:w-1/3">
+              <Flex className="justify-end">
+                <button ref={userRef}>
+                  <Image src={user} className="me-[41px]" />
+                </button>
+                {userOpen && <UserPopup className={`z-50`} />}
+
+                <button ref={cartRef}>
+                  <Image src={cart} className="" />
+                </button>
+                {cartOpen && (
+                  <AddToCart className="absolute top-[210px] sm:top-[165px] right-[] z-50" />
+                )}
               </Flex>
             </div>
-            {menu && <MenuCategory className={`z-50`}/>}
-          </div>
-          <div className="w-full py-3 sm:py-0 sm:w-1/3 relative">
-            <input
-              type="text"
-              placeholder="Search Products"
-              className="w-full py-4 ps-[21px] placeholder:text-[14px] placeholder:text-[#C4C4C4] focus:outline-none"
-            />
-            <div className="absolute top-1/2 -translate-y-1/2 right-[17px]">
-              <a href="#" className="">
-                <Search />
-              </a>
-            </div>
-          </div>
-          <div className="w-full mt-2 sm:mt-0 sm:w-1/3">
-            <Flex className="justify-end">
-              <button ref={userRef}>
-                <Image src={user} className="me-[41px]" />
-              </button>
-              {userOpen && <UserPopup className={`z-50`}/>}
-
-              <button ref={cartRef}>
-                <Image src={cart} className="" />
-              </button>
-              {cartOpen && (
-                <AddToCart className="absolute top-[210px] sm:top-[165px] right-[] z-50" />
-              )}
-            </Flex>
-          </div>
-        </Flex>
-      </Container>
-    </section>
+          </Flex>
+        </Container>
+      </section>
     </div>
   );
 };
