@@ -5,16 +5,20 @@ import Breadcrumb from "../components/Breadcrumb";
 import Paragraph from "../components/Paragraph";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 
 function SignUp() {
   // for authentication
   const auth = getAuth();
   const db = getDatabase();
+  let navigate = useNavigate();
 
   const [name, setName] = useState("");
+  const [passShow, setPassShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailErr, setEmailErr] = useState("");
@@ -34,6 +38,8 @@ function SignUp() {
 
     if (!email) {
       setEmailErr("Please fill it with your Email");
+    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      setEmailErr("Please enter the valid email");
     }
 
     createUserWithEmailAndPassword(auth, email, password)
@@ -41,10 +47,31 @@ function SignUp() {
         set(ref(db, "users/" + user.user.uid), {
           username: name,
           email: email,
-        })
+        }).then(() => {
+          setEmail("");
+          setEmailErr("");
+        });
       })
       .then(() => {
-        console.log("submit");
+        toast("🦄 Congratulations, SignUp Done!", {
+          position: "bottom-left",
+          autoClose: 2500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+        setEmail("");
+        setName("");
+        setPassword("");
+        setEmailErr("");
+        setTimeout(() => {
+          console.log("submit");
+          navigate('/login')
+        }, 2500);
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -151,12 +178,20 @@ function SignUp() {
             className="text-[39px] font-bold text-primary mb-[42px]"
           />
           <div className="grid grid-cols-3 gap-10 mb-7">
-            <Input
-              inputype="password"
-              onchange={handlePass}
-              labelname="Password"
-              inputph="password"
-            />
+            <div className="relative">
+              <Input
+                inputype={passShow ? "text" : "password"}
+                onchange={handlePass}
+                labelname="Password"
+                inputph="password"
+              />
+              <div
+                onClick={() => setPassShow(!passShow)}
+                className="absolute top-10 right-0"
+              >
+                {passShow ? <FaRegEyeSlash /> : <FaRegEye />}
+              </div>
+            </div>
             <Input
               inputype="password"
               labelname="Repeat Password"
@@ -205,12 +240,25 @@ function SignUp() {
               No
             </label>
           </div>
-
+          <ToastContainer
+            position="bottom-left"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition:Bounce
+          />
           <Button
             onClick={handleSubmit}
             text="Sign in"
             className="py-4 ps-[77px] pe-[83px]"
           />
+
           <div className="mt-5 font-dmsans text-sm text-secondary">
             Already have an account ? Please
             <Link to="/login" className="text-blue-500">

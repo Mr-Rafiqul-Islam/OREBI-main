@@ -5,6 +5,7 @@ import Breadcrumb from "../components/Breadcrumb";
 import { useSelector } from "react-redux";
 import { getDatabase, ref, onValue } from "firebase/database";
 
+
 function Checkout() {
   // for getting info of cart product
   let info = useSelector((state) => state.singleproduct.cartitem);
@@ -199,8 +200,7 @@ function Checkout() {
                 type="email"
                 placeholder="Email"
                 defaultValue={userdata.email}
-              />{" "}
-              <hr />
+              /><hr />
             </div>
           </form>
           <div className="py-[100px]">
