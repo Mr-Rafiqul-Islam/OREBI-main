@@ -13,7 +13,8 @@ import Navbar from "./Navbar";
 import { ApiData } from "../ContextApi";
 import Heading from "../Heading";
 import Subheading from "../Subheading";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [userOpen, setUserOpen] = useState(false);
@@ -51,21 +52,42 @@ const Header = () => {
   const [searchWord, setSearchWord] = useState("");
   // for api calling
   let data = useContext(ApiData);
-  const [filteredData, setFilteredData] = useState(data);
+  const [filteredData, setFilteredData] = useState([]);
 
   let handlesearch = (e) => {
     const searchTerms = e.target.value;
     setSearchWord(searchTerms);
 
-    // for filtering product
-    const filtered = data.filter((product) =>
-      product.title.toLowerCase().includes(searchTerms.toLowerCase())
-    );
-
-    setFilteredData(filtered)
+    if (searchTerms == "") {
+      setFilteredData([]);
+    } else {
+      // for filtering product
+      const filtered = data.filter((product) =>
+        product.title.toLowerCase().includes(searchTerms.toLowerCase())
+      );
+      setFilteredData(filtered);
+    }
   };
-  console.log(filteredData);
+  // console.log(filteredData);
 
+  // for clicking search button
+  let navigate = useNavigate();
+  let handleSearchClick = (e) => {
+    navigate("/search", { state: { key: filteredData, search: searchWord } });
+    setSearchWord("");
+  };
+  let setSearchKey = (e) => {
+    console.log(e.key);
+    if (e.key == "Enter") {
+      navigate("/search", {
+        state: { key: filteredData, search: searchWord },
+      });
+      setSearchWord("");
+    }
+  };
+  // for using raw tooltip
+  let info = useSelector((state) => state.singleproduct.cartitem);
+  // console.log(info);
   return (
     <div className="sticky top-0 w-full left-0 z-50">
       <Navbar />
@@ -87,32 +109,48 @@ const Header = () => {
               <input
                 value={searchWord}
                 onChange={handlesearch}
+                onKeyUp={setSearchKey}
                 type="text"
                 placeholder="Search Products"
                 className="w-full py-4 ps-[21px] placeholder:text-[14px] placeholder:text-[#C4C4C4] focus:outline-none"
               />
-              <div className="absolute top-1/2 -translate-y-1/2 right-[17px]">
-                <a href="#" className="">
-                  <Search />
-                </a>
+              <div
+                className="absolute top-1/2 -translate-y-1/2 right-[17px]"
+                onClick={handleSearchClick}
+              >
+                <Search className={`cursor-pointer`} />
               </div>
               <div className="absolute bottom-100 w-full overflow-auto h-96 ">
-              { searchWord && filteredData.map((item,i)=>(
-              <Link to={`/shop/${item.id}`}><div className="h-[120px] w-full bg-[#F5F5F3] px-[21px] py-[22px] flex items-center" key={i} onClick={()=>setSearchWord("")}>
-                <Image src={item.thumbnail} className='me-[22px] h-[100px] w-[100px]'/>
-                <div className="flex justify-between items-center w-full">
-                <div className="flex flex-col gap-y-5">
-                        <Subheading text={item.title} className='text-sm font-bold'/>
-                        <Subheading text={`$${item.price}`} className='text-sm font-bold'/>
-                    </div>
-                </div>
-              </div>
-              </Link>
-            ))
-            }
+                {searchWord &&
+                  filteredData.map((item, i) => (
+                    <Link to={`/shop/${item.id}`}>
+                      <div
+                        className="h-[120px] w-full bg-[#F5F5F3] px-[21px] py-[22px] flex items-center"
+                        key={i}
+                        onClick={() => setSearchWord("")}
+                      >
+                        <Image
+                          src={item.thumbnail}
+                          className="me-[22px] h-[100px] w-[100px]"
+                        />
+                        <div className="flex justify-between items-center w-full">
+                          <div className="flex flex-col gap-y-5">
+                            <Subheading
+                              text={item.title}
+                              className="text-sm font-bold"
+                            />
+                            <Subheading
+                              text={`$${item.price}`}
+                              className="text-sm font-bold"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
               </div>
             </div>
-            
+
             <div className="w-full mt-2 sm:mt-0 sm:w-1/3">
               <Flex className="justify-end">
                 <button ref={userRef}>
@@ -120,7 +158,12 @@ const Header = () => {
                 </button>
                 {userOpen && <UserPopup className={`z-50`} />}
 
-                <button ref={cartRef}>
+                <button ref={cartRef} className="relative">
+                  {info.length > 0 && (
+                    <div className="absolute -top-5 -right-2 font-dmsans bg-primary text-white rounded-full w-5 h-5 grid place-content-center">
+                      {info.length}
+                    </div>
+                  )}
                   <Image src={cart} className="" />
                 </button>
                 {cartOpen && (

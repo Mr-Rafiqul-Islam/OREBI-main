@@ -19,6 +19,7 @@ import { ContextApi } from "./components/ContextApi";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import SearchPage from "./pages/SearchPage";
 
 
 const router = createBrowserRouter(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
         <Route path='/contact' element={<Contact/>}/>
         <Route path='/about' element={<About/>}/>
         <Route path='/shop' element={<Shop/>}/>
+        <Route path='/search' element={<SearchPage/>}/>
         <Route path='/shop/:id' element={<ProductDetails/>}/>
         <Route path='/journal' element={<Journal/>}/>
         <Route path='/login' element={<Login/>}/>
