@@ -16,7 +16,7 @@ const Specialoffer = () => {
     <section className='mb-[140px]'>
         <Container>
             <div>
-                <Link><Image src={phone} className='mt-3 mb-14 md:mb-32'/></Link>
+                <Link to="/shop"><Image src={phone} className='mt-3 mb-14 md:mb-32'/></Link>
             </div>
             <Heading text='Special Offers' className="text-primary text-[39px] font-semibold mb-12"/>
             <Flex className='flex-wrap lg:flex-nowrap gap-8 justify-center lg:gap-9 xl:gap-10'>

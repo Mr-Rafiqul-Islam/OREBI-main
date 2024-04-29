@@ -63,13 +63,13 @@ const Banner = () => {
   return (
     <section className="">
       <Slider {...settings}>
-        <Link to="#">
+        <Link to="/shop">
           <Image src={banner} className="w-full" />
         </Link>
-        <Link to="#">
+        <Link to="/shop">
           <Image src={banner} className="w-full" />
         </Link>
-        <Link to="#">
+        <Link to="/shop">
           <Image src={banner} className="w-full" />
         </Link>
       </Slider>

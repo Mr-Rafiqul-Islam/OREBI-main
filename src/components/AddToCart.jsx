@@ -22,7 +22,7 @@ function AddToCart({className}) {
     { totalprice: 0, totalquantity: 0 }
   );
   return (
-    <div className={`w-[360px] h-auto bg-white border border-[#F0F0F0] ${className}`}>
+    <div className={`w-[360px] max-h-[500px] overflow-y-auto bg-white border border-[#F0F0F0] ${className}`}>
       {data.map((item,i)=>(
         <div className="h-[120px] w-full bg-[#F5F5F3] px-[21px] py-[22px] flex items-center" key={i}>
                 <Image src={item.thumbnail} alt='watch' className='me-[22px] h-[100px] w-[100px]'/>

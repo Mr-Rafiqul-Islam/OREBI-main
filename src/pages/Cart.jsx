@@ -78,7 +78,7 @@ function Cart() {
                   src={item.thumbnail}
                   className={`h-[100px] w-[100px] mx-5`}
                 />
-                <Subheading text={`$${item.title}`} className={`text-base`} />
+                <Subheading text={`${item.title}`} className={`text-base`} />
               </div>
               <Subheading text={`$${item.price}`} />
               <div className="quantity">
@@ -92,7 +92,7 @@ function Cart() {
                   </button>
                 </div>
               </div>
-              <Subheading text={item.price * item.qun} />
+              <Subheading text={`$${item.price * item.qun}`} />
             </div>
           ))}
         </div>
