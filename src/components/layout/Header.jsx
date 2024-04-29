@@ -7,11 +7,11 @@ import cart from "../../assets/Icon_cart.svg";
 import Bar from "../Icons/Bar";
 import Search from "../Icons/Search";
 import UserPopup from "./UserPopup";
+import UserPopup2 from "./UserPopup2"
 import MenuCategory from "../MenuCategory";
 import AddToCart from "../AddToCart";
 import Navbar from "./Navbar";
 import { ApiData } from "../ContextApi";
-import Heading from "../Heading";
 import Subheading from "../Subheading";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -156,7 +156,7 @@ const Header = () => {
                 <button ref={userRef}>
                   <Image src={user} className="me-[41px]" />
                 </button>
-                {userOpen && <UserPopup className={`z-50`} />}
+                {userOpen && <UserPopup2 className={`z-50`} />}
 
                 <button ref={cartRef} className="relative">
                   {info.length > 0 && (
