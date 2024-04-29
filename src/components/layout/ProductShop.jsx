@@ -3,6 +3,8 @@ import Product from "../Product";
 import { ApiData } from "../ContextApi";
 import PaginationNum from "../PaginationNum";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../slices/singleSlice";
 
 function ProductShop() {
   // for api calling
@@ -20,12 +22,17 @@ function ProductShop() {
   
   //  for navigation buttons calculation
   let totalProducts = data.length;
-
+// for sending product data to cart
+let dispatch = useDispatch();
+let handleCart = (item) => {
+  dispatch(addToCart({...item, qun:1}));
+  console.log("cart",item);
+};
   return (
     <div className="w-full">
       <div className="grid grid-cols-3 gap-10">
         {allPage.map((item) => (
-          <Link to={`/shop/${item.id}`}>
+          
           <Product
             key={item.id}
             title={item.title}
@@ -33,8 +40,10 @@ function ProductShop() {
             color={item.brand}
             batch={`-${item.discountPercentage}%`}
             src={item.thumbnail}
+            cartInfo={()=>handleCart(item)}
+            link={`/shop/${item.id}`}
           />
-          </Link>
+         
         ))}
       </div>
       <PaginationNum

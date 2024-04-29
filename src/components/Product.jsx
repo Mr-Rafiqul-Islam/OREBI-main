@@ -5,9 +5,10 @@ import Flex from './Flex'
 import Heading from './Heading'
 import { FaHeart,FaShoppingCart } from "react-icons/fa";
 import { GrPowerCycle } from "react-icons/gr";
+import { Link } from 'react-router-dom'
 
 
-const Product = ({src,batch,title,price,color}) => {
+const Product = ({src,batch,title,price,color,cartInfo,link}) => {
   return (
     <div className='w-full group'>
 
@@ -15,8 +16,10 @@ const Product = ({src,batch,title,price,color}) => {
         <div className="w-full relative overflow-hidden">
 
             {/* ===========image part start====== */}
+            <Link to={link}>
             <Image src={src} className='w-[370px] h-[370px]'/>
             <Batch className='absolute top-5 left-6' text={batch}/>
+            </Link>
             {/* ===========image part end====== */}
 
             {/* =====hover part start======= */}
@@ -29,9 +32,9 @@ const Product = ({src,batch,title,price,color}) => {
                     <Heading text="Compare" className='text-secondary text-sm xl:text-base font-normal'/>
                     <GrPowerCycle />
                 </Flex>
-                <Flex className="justify-end items-center gap-[15px]">
-                    <Heading text="Add to Cart" className='text-primary text-sm xl:text-base font-bold'/>
-                    <FaShoppingCart />
+                <Flex className="justify-end items-center gap-[15px]" onClick={cartInfo}>
+                    <Heading text="Add to Cart" className='text-primary text-sm xl:text-base font-bold cursor-pointer'/>
+                    <FaShoppingCart className=' cursor-pointer'/>
                 </Flex>
             </div>
             {/* =====hover part end======= */}
@@ -40,10 +43,10 @@ const Product = ({src,batch,title,price,color}) => {
 
         {/* =========lower part of card========= */}
         <div className="w-full pt-[24px]">
-            <div className='flex justify-between'>
+            <Link className='flex justify-between' to={link}>
             <Heading text={title} className='font-bold text-base xl:text-xl text-primary'/>
             <Heading text={price} className='font-normal text-sm xl:text-base text-secondary'/>
-            </div>
+            </Link>
             <Heading className='font-normal text-sm xl:text-base text-secondary mt-[15px]' text={color}/>
         </div>
         {/* =========lower part of card end========= */}

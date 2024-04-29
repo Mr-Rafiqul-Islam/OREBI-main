@@ -25,11 +25,16 @@ export const singleSlice = createSlice({
       localStorage.setItem("cart", JSON.stringify(state.cartitem));
     },
     incrementProd: (state, action) => {
-      state.cartitem[action.payload].qun += 1;
-      localStorage.setItem("cart", JSON.stringify(state.cartitem));
+      if (
+        state.cartitem[action.payload].qun <
+        state.cartitem[action.payload].stock
+      ) {
+        state.cartitem[action.payload].qun += 1;
+        localStorage.setItem("cart", JSON.stringify(state.cartitem));
+      }
     },
     decrementProd: (state, action) => {
-      if(state.cartitem[action.payload].qun > 1){
+      if (state.cartitem[action.payload].qun > 1) {
         state.cartitem[action.payload].qun -= 1;
         localStorage.setItem("cart", JSON.stringify(state.cartitem));
       }
@@ -38,6 +43,7 @@ export const singleSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { addToCart, removeProduct, incrementProd, decrementProd } = singleSlice.actions;
+export const { addToCart, removeProduct, incrementProd, decrementProd } =
+  singleSlice.actions;
 
 export default singleSlice.reducer;
