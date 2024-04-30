@@ -4,7 +4,11 @@ import Heading from "../components/Heading";
 import Breadcrumb from "../components/Breadcrumb";
 import { useSelector } from "react-redux";
 import { getDatabase, ref, onValue } from "firebase/database";
-
+import Tooltip from "../components/Tooltip";
+import Button from "../components/Button";
+import Input from "../components/Input";
+import { Link } from "react-router-dom";
+import StripeCheckout from "react-stripe-checkout";
 
 function Checkout() {
   // for getting info of cart product
@@ -30,6 +34,20 @@ function Checkout() {
       });
     });
   }, []);
+
+  // for payment method
+
+  const onToken = (token) => {
+    fetch("/save-stripe-token", {
+      method: "POST",
+      body: JSON.stringify(token),
+    }).then((response) => {
+      response.json().then((data) => {
+        alert(`We are in business, ${data.email}`);
+      });
+    });
+  };
+
   return (
     <section className="pt-[124px] pb-[131px]">
       <Container>
@@ -40,8 +58,8 @@ function Checkout() {
           />
           <Breadcrumb />
           <p className="font-dmsans font-normal text-[16px] text-[#767676] pt-14 mb-20 -mt-10">
-            Have a coupon?{" "}
-            <span className="text-[#262626]">
+            Have a coupon?
+            <span className="text-[#262626] ms-2">
               Click here to enter your code
             </span>
           </p>
@@ -58,14 +76,14 @@ function Checkout() {
                   className="font-dmsans font-bold text-[16px] text-[#262626]"
                 >
                   First Name*
-                </label>{" "}
+                </label>
                 <br />
                 <input
                   className="outline-none font-dmsans font-normal text-[14px] placeholder:text-[#767676] py-2 px-2 w-full "
                   type="text"
                   placeholder="First Name"
                   defaultValue={userdata.username}
-                />{" "}
+                />
                 <hr />
               </div>
               <div className="w-[45%]">
@@ -74,13 +92,13 @@ function Checkout() {
                   htmlFor=""
                 >
                   Last Name*
-                </label>{" "}
+                </label>
                 <br />
                 <input
                   className="outline-none font-dmsans font-normal text-[14px] placeholder:text-[#767676] py-2 px-2 w-full "
                   type="email"
                   placeholder="Last Name"
-                />{" "}
+                />
                 <hr />
               </div>
             </div>
@@ -95,7 +113,7 @@ function Checkout() {
                 className="outline-none font-dmsans font-normal text-[14px] placeholder:text-[#767676] py-2 px-2 w-full "
                 type="text"
                 placeholder="Company Name"
-              />{" "}
+              />
               <hr />
             </div>
             <div className="py-6">
@@ -109,7 +127,7 @@ function Checkout() {
                 className="outline-none font-dmsans font-normal text-[14px] placeholder:text-[#767676] py-2 px-2 w-full "
                 type="text"
                 placeholder="Please select"
-              />{" "}
+              />
               <hr />
             </div>
             <div className="py-6">
@@ -123,13 +141,13 @@ function Checkout() {
                 className="outline-none font-dmsans font-normal text-[14px] placeholder:text-[#767676] py-2 px-2 w-full "
                 type="text"
                 placeholder="House number and street name"
-              />{" "}
+              />
               <hr />
               <input
                 className="outline-none font-dmsans font-normal text-[14px] placeholder:text-[#767676] py-2 px-2 w-full mt-2"
                 type="text"
                 placeholder="Apartment, suite, unit etc. (optional)"
-              />{" "}
+              />
               <hr />
             </div>
             <div className="py-6">
@@ -143,7 +161,7 @@ function Checkout() {
                 className="outline-none font-dmsans font-normal text-[14px] placeholder:text-[#767676] py-2 px-2 w-full "
                 type="text"
                 placeholder="Town/City"
-              />{" "}
+              />
               <hr />
             </div>
             <div className="py-6">
@@ -157,7 +175,7 @@ function Checkout() {
                 className="outline-none font-dmsans font-normal text-[14px] placeholder:text-[#767676] py-2 px-2 w-full "
                 type="text"
                 placeholder="County"
-              />{" "}
+              />
               <hr />
             </div>
             <div className="py-6">
@@ -171,7 +189,7 @@ function Checkout() {
                 className="outline-none font-dmsans font-normal text-[14px] placeholder:text-[#767676] py-2 px-2 w-full "
                 type="code"
                 placeholder="Post Code"
-              />{" "}
+              />
               <hr />
             </div>
             <div className="py-6">
@@ -185,7 +203,7 @@ function Checkout() {
                 className="outline-none font-dmsans font-normal text-[14px] placeholder:text-[#767676] py-2 px-2 w-full "
                 type="code"
                 placeholder="Phone"
-              />{" "}
+              />
               <hr />
             </div>
             <div className="py-6">
@@ -200,7 +218,8 @@ function Checkout() {
                 type="email"
                 placeholder="Email"
                 defaultValue={userdata.email}
-              /><hr />
+              />
+              <hr />
             </div>
           </form>
           <div className="py-[100px]">
@@ -278,6 +297,49 @@ function Checkout() {
             </tbody>
           </table>
         </div>
+        <div className="bg-white px-[33px] py-[26px] border flex flex-col gap-y-2 md:w-[1053px]">
+        <form
+          action=""
+          className="flex flex-col gap-y-2 md:w-[1053px]"
+        >
+          <Tooltip
+            text={`Pay via Bank; you can pay with your credit card if you don’t have a Bank account.`}
+          >
+            <div>
+              <input type="radio" name="bank" id="bank1" value="Bank 1" />
+              <label
+                htmlFor="bank1"
+                className="text-primary font-dmsans font-bold text-base ps-1"
+              >
+                Bank
+              </label>
+            </div>
+          </Tooltip>
+          <br />
+          <Tooltip
+            text={`Pay via Bank; you can pay with your credit card if you don’t have a Bank account.`}
+          >
+            <input type="radio" name="bank" id="bank2" value="Bank 2" />
+            <label
+              htmlFor="bank2"
+              className="text-primary font-dmsans font-bold text-base ps-1"
+            >
+              Bank 2
+            </label>
+          </Tooltip>
+          <p className="font-dmsans text-base text-secondary pe-5">
+            Your personal data will be used to process your order, support your
+            experience throughout this website, and for other purposes described
+            in our <Link className="text-primary">privacy policy</Link>.
+          </p>
+        </form>
+          <StripeCheckout
+            token={onToken}
+            stripeKey="pk_test_51PBLqvK8Bmm1AWdLlYFwmXroskCzU2gQSiyD3blY3zKdeNUtLzcibB75ZvFl16f19HFgRVoMmUtw9uxQ1hyp2EK600AC6l4rG5"
+            amount={totalprice*100}
+            email={userdata.email}
+          />
+          </div>
       </Container>
     </section>
   );
