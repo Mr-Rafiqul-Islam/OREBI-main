@@ -5,8 +5,6 @@ import Breadcrumb from "../components/Breadcrumb";
 import { useSelector } from "react-redux";
 import { getDatabase, ref, onValue } from "firebase/database";
 import Tooltip from "../components/Tooltip";
-import Button from "../components/Button";
-import Input from "../components/Input";
 import { Link } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 

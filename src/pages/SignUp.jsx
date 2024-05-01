@@ -260,7 +260,7 @@ function SignUp() {
 
           <div className="mt-5 font-dmsans text-sm text-secondary">
             Already have an account ? Please
-            <Link to="/login" className="text-blue-500">
+            <Link to="/login" className="text-blue-500 mx-1">
               Login
             </Link>
             Here
