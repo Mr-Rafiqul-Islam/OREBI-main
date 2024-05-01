@@ -53,6 +53,18 @@ function ProductDetails() {
   };
   // for customselector
   let option =["M","L","XL","XXL"]
+
+
+  const accordionItems = [
+    {
+      title: 'FEATURES & DETAILS',
+      content: 'Content for Accordion Item 1',
+    },
+    {
+      title: 'SHIPPING & RETURNS',
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    }
+  ];
   return (
     <>
       <section className="pt-[124px] pb-10">
@@ -135,8 +147,8 @@ function ProductDetails() {
               />
             </Flex>
           </div>
-          <div className="py-5 w-[780px] border-b">
-            <Accordion />
+          <div className="py-5 w-[780px]">
+            <Accordion items={accordionItems} />
           </div>
         </Container>
       </section>

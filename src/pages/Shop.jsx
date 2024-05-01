@@ -10,13 +10,13 @@ import { useSelector } from 'react-redux'
 
 
 const Shop = () => {
-  let data = useSelector((state)=> state.breadcrumb.currentname)
+  let dataa = useSelector((state)=> state.breadcrumb.currentname)
   let breadC = window.location.pathname.replace("/", "").replace("-", " ")
   return (
     <section className='pt-[124px] pb-[140px]'>
         <Container>
           <Flex>
-            <h1 className='font-dmsans text-xs text-third font-normal'>{data}</h1>
+            <h1 className='font-dmsans text-xs text-third font-normal'>{dataa}</h1>
             <div className="px-2 font-dmsans text-xs text-third font-normal">&gt;</div>
             <h1 className='first-letter:uppercase font-dmsans text-xs text-third font-normal'>{breadC}</h1>
           </Flex>
