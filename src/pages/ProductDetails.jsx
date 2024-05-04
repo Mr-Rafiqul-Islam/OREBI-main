@@ -58,7 +58,7 @@ function ProductDetails() {
   const accordionItems = [
     {
       title: 'FEATURES & DETAILS',
-      content: 'Content for Accordion Item 1',
+      content: data.description,
     },
     {
       title: 'SHIPPING & RETURNS',
