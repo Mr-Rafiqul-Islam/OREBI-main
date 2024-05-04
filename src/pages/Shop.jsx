@@ -6,6 +6,8 @@ import Flex from "../components/Flex";
 import Filter2 from "../components/layout/Filter2";
 import { useSelector } from "react-redux";
 import Category from "../components/Category";
+import ColorFilter from "../components/ColorFilter"
+import BrandFilter from "../components/BrandFilter"
 
 import React, { useContext, useState } from "react";
 import Product from "../components/Product";
@@ -44,14 +46,20 @@ const Shop = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [cateProducts, setCateProducts] = useState([]);
   const categoryItems = [...new Set(data.map((items) => items.category))];
-  // console.log(categoryItems);
+  const brandItems = [...new Set(data.map((items) => items.brand))];
+  // console.log(brandItems);
 
   let filterItem = (currentval) => {
     const newItem = data.filter((item) => item.category == currentval);
     setSelectedCategory(currentval);
     setCateProducts(newItem);
   };
-
+// for brand filter
+  let handleBrand =(currentval)=>{
+    const brandItem = data.filter((item) => item.brand == currentval);
+    setSelectedCategory(currentval);
+    setCateProducts(brandItem);
+  }
   return (
     <section className="pt-[124px] pb-[140px]">
       <Container>
@@ -73,6 +81,8 @@ const Shop = () => {
 
           <aside className="w-[372px]">
             <Category categoryItems={categoryItems} filterItem={filterItem} setCateProducts={setCateProducts} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
+            <ColorFilter/>
+            <BrandFilter brandItems={brandItems} handleBrand={handleBrand} selectedCategory={selectedCategory}/>
             <Filter />
           </aside>
 
