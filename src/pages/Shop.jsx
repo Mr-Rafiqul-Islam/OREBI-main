@@ -60,6 +60,13 @@ const Shop = () => {
     setSelectedCategory(currentval);
     setCateProducts(brandItem);
   }
+//for grid or list view
+const [viewType, setViewType] = useState('grid');
+
+const toggleView = (type) => {
+  setViewType(type);
+};
+console.log(viewType);
   return (
     <section className="pt-[124px] pb-[140px]">
       <Container>
@@ -90,8 +97,11 @@ const Shop = () => {
 
           {/* ==========Shop view Start======= */}
           <aside>
-            <Filter2 className="mb-[60px]" />
+            <Filter2 className="mb-[60px]" toggleView={toggleView}/>
             <div className="w-full">
+              {viewType == "grid"?
+              (
+
               <div className="grid grid-cols-3 gap-10">
                 {cateProducts.length > 0
                   ? cateProducts.map((item) => (
@@ -119,6 +129,35 @@ const Shop = () => {
                       />
                     ))}
               </div>
+              ):(
+                <div>
+                  {cateProducts.length > 0
+                  ? cateProducts.map((item) => (
+                      <Product
+                        key={item.id}
+                        title={item.title}
+                        price={`$${item.price}`}
+                        color={item.brand}
+                        batch={`-${item.discountPercentage}%`}
+                        src={item.thumbnail}
+                        cartInfo={() => handleCart(item)}
+                        link={`/shop/${item.id}`}
+                      />
+                    ))
+                  : allPage.map((item) => (
+                      <Product
+                        key={item.id}
+                        title={item.title}
+                        price={`$${item.price}`}
+                        color={item.brand}
+                        batch={`-${item.discountPercentage}%`}
+                        src={item.thumbnail}
+                        cartInfo={() => handleCart(item)}
+                        link={`/shop/${item.id}`}
+                      />
+                    ))}
+                </div>
+              )}
               <PaginationNum
                 currentPage={currentPage}
                 setCurrentPage={setCurrentPage}

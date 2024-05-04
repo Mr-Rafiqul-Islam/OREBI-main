@@ -5,14 +5,14 @@ import { FaList } from "react-icons/fa";
 import Paragraph from "../Paragraph";
 import { IoMdArrowDropup } from "react-icons/io";
 
-const Filter2 = ({className}) => {
+const Filter2 = ({className,toggleView}) => {
   return (
     <div className={`${className} w-full`}>
       <div className="flex justify-between">
 
         <div className="flex w-24">
-          <Grid1 className="me-5" />
-          <FaList className="text-4xl" />
+          <Grid1 className="me-5 cursor-pointer" onClick={()=>toggleView('grid')}/>
+          <FaList className="text-4xl cursor-pointer" onClick={()=>toggleView('list')} />
         </div>
 
         <div className="w-[550px] flex justify-between">
