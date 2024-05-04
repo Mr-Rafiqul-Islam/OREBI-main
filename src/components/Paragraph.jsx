@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Paragraph = ({className,text}) => {
+const Paragraph = ({className,text,onClick}) => {
   return (
-    <p className={`${className} font-dmsans`}>{text}</p>
+    <p className={`${className} font-dmsans`} onClick={onClick}>{text}</p>
   )
 }
 

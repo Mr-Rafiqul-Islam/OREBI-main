@@ -1,46 +1,127 @@
-import React from 'react'
-import Container from '../components/Container'
-import Heading from '../components/Heading'
-import Breadcrumb from '../components/Breadcrumb'
-import Filter from '../components/layout/Filter'
-import Flex from '../components/Flex'
-import Filter2 from '../components/layout/Filter2'
-import ProductShop from '../components/layout/ProductShop'
-import { useSelector } from 'react-redux'
+import Container from "../components/Container";
+import Heading from "../components/Heading";
+import Breadcrumb from "../components/Breadcrumb";
+import Filter from "../components/layout/Filter";
+import Flex from "../components/Flex";
+import Filter2 from "../components/layout/Filter2";
+import { useSelector } from "react-redux";
+import Category from "../components/Category";
 
+import React, { useContext, useState } from "react";
+import Product from "../components/Product";
+import { ApiData } from "../components/ContextApi";
+import PaginationNum from "../components/PaginationNum";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../slices/singleSlice";
 
 const Shop = () => {
-  let dataa = useSelector((state)=> state.breadcrumb.currentname)
-  let breadC = window.location.pathname.replace("/", "").replace("-", " ")
+  // for breadcrumb
+  let dataa = useSelector((state) => state.breadcrumb.currentname);
+  let breadC = window.location.pathname.replace("/", "").replace("-", " ");
+
+  // for api calling
+  let data = useContext(ApiData);
+
+  //for product per page if you want to change then change the value of useState
+  const [perPage, setPerPage] = useState(6);
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // dyanamic calculation for showing limited product in one page
+  let lastPage = currentPage * perPage;
+  let firstPage = lastPage - perPage;
+  let allPage = data.slice(firstPage, lastPage);
+
+  //  for navigation buttons calculation
+  let totalProducts = data.length;
+  // for sending product data to cart
+  let dispatch = useDispatch();
+  let handleCart = (item) => {
+    dispatch(addToCart({ ...item, qun: 1 }));
+    console.log("cart", item);
+  };
+  // for category product
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [cateProducts, setCateProducts] = useState([]);
+  const categoryItems = [...new Set(data.map((items) => items.category))];
+  // console.log(categoryItems);
+
+  let filterItem = (currentval) => {
+    const newItem = data.filter((item) => item.category == currentval);
+    setSelectedCategory(currentval);
+    setCateProducts(newItem);
+  };
+
   return (
-    <section className='pt-[124px] pb-[140px]'>
-        <Container>
-          <Flex>
-            <h1 className='font-dmsans text-xs text-third font-normal'>{dataa}</h1>
-            <div className="px-2 font-dmsans text-xs text-third font-normal">&gt;</div>
-            <h1 className='first-letter:uppercase font-dmsans text-xs text-third font-normal'>{breadC}</h1>
-          </Flex>
-          <Heading text='Product' className='text-5xl font-bold text-primary'/>
-          <Breadcrumb/>
-          <Flex className='gap-[33px]'>
-            {/* ==========sidebar start======= */}
+    <section className="pt-[124px] pb-[140px]">
+      <Container>
+        <Flex>
+          <h1 className="font-dmsans text-xs text-third font-normal">
+            {dataa}
+          </h1>
+          <div className="px-2 font-dmsans text-xs text-third font-normal">
+            &gt;
+          </div>
+          <h1 className="first-letter:uppercase font-dmsans text-xs text-third font-normal">
+            {breadC}
+          </h1>
+        </Flex>
+        <Heading text="Product" className="text-5xl font-bold text-primary" />
+        <Breadcrumb />
+        <Flex className="gap-[33px]">
+          {/* ==========sidebar start======= */}
 
-            <aside className='w-[372px]'>
-            <Filter/>
-            </aside>
+          <aside className="w-[372px]">
+            <Category categoryItems={categoryItems} filterItem={filterItem}/>
+            <Filter />
+          </aside>
 
-            {/* ==========sidebar end======= */}
+          {/* ==========sidebar end======= */}
 
-            {/* ==========Shop view Start======= */}
-            <aside>
-            <Filter2 className='mb-[60px]'/>
-            <ProductShop/>
-            </aside>
-            {/* ==========Shop view end======= */}
-          </Flex>
-        </Container>
+          {/* ==========Shop view Start======= */}
+          <aside>
+            <Filter2 className="mb-[60px]" />
+            <div className="w-full">
+              <div className="grid grid-cols-3 gap-10">
+                {cateProducts.length > 0
+                  ? cateProducts.map((item) => (
+                      <Product
+                        key={item.id}
+                        title={item.title}
+                        price={`$${item.price}`}
+                        color={item.brand}
+                        batch={`-${item.discountPercentage}%`}
+                        src={item.thumbnail}
+                        cartInfo={() => handleCart(item)}
+                        link={`/shop/${item.id}`}
+                      />
+                    ))
+                  : allPage.map((item) => (
+                      <Product
+                        key={item.id}
+                        title={item.title}
+                        price={`$${item.price}`}
+                        color={item.brand}
+                        batch={`-${item.discountPercentage}%`}
+                        src={item.thumbnail}
+                        cartInfo={() => handleCart(item)}
+                        link={`/shop/${item.id}`}
+                      />
+                    ))}
+              </div>
+              <PaginationNum
+                currentPage={currentPage}
+                setCurrentPage={setCurrentPage}
+                totalProducts={totalProducts}
+                perPage={perPage}
+              />
+            </div>
+          </aside>
+          {/* ==========Shop view end======= */}
+        </Flex>
+      </Container>
     </section>
-  )
-}
+  );
+};
 
-export default Shop
+export default Shop;
