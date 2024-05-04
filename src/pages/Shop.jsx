@@ -72,7 +72,7 @@ const Shop = () => {
           {/* ==========sidebar start======= */}
 
           <aside className="w-[372px]">
-            <Category categoryItems={categoryItems} filterItem={filterItem}/>
+            <Category categoryItems={categoryItems} filterItem={filterItem} setCateProducts={setCateProducts} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory}/>
             <Filter />
           </aside>
 
@@ -114,6 +114,7 @@ const Shop = () => {
                 setCurrentPage={setCurrentPage}
                 totalProducts={totalProducts}
                 perPage={perPage}
+                cateProducts={cateProducts}
               />
             </div>
           </aside>

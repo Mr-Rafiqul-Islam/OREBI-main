@@ -5,11 +5,12 @@ function PaginationNum({
   perPage,
   currentPage,
   setCurrentPage,
+  cateProducts
 }) {
   // for dynamic navigation number
   let pageNumber = [];
 
-  for (let i = 1; i <= Math.ceil(totalProducts / perPage); i++) {
+  for (let i = 1; i <= Math.ceil(cateProducts.length > 0 ? cateProducts.length/ perPage : totalProducts / perPage); i++) {
     pageNumber.push(i);
   }
   //   for pagination by click
@@ -32,7 +33,8 @@ function PaginationNum({
     <>
       <nav aria-label="Page navigation example">
         <ul class="flex items-center -space-x-px h-8 text-sm my-10">
-          <li onClick={Prev}>
+          {pageNumber.length > 0 &&
+          (<li onClick={Prev}>
             <a class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 cursor-pointer">
               <span class="sr-only">Previous</span>
               <svg
@@ -51,7 +53,8 @@ function PaginationNum({
                 />
               </svg>
             </a>
-          </li>
+          </li>)
+          }
           {pageNumber.map((item, i) => (
             <li key={item} onClick={() => Paginate(item)}>
               <a
@@ -65,6 +68,7 @@ function PaginationNum({
               </a>
             </li>
           ))}
+          {pageNumber.length > 0 &&(
           <li onClick={Next}>
             <a class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 cursor-pointer">
               <span class="sr-only">Next</span>
@@ -85,6 +89,7 @@ function PaginationNum({
               </svg>
             </a>
           </li>
+          )}
         </ul>
       </nav>
     </>
