@@ -25,8 +25,8 @@ const Shop = () => {
   let data = useContext(ApiData);
 
   //for product per page if you want to change then change the value of useState
+  
   const [perPage, setPerPage] = useState(6);
-
   const [currentPage, setCurrentPage] = useState(1);
 
   // dyanamic calculation for showing limited product in one page
@@ -36,6 +36,9 @@ const Shop = () => {
 
   //  for navigation buttons calculation
   let totalProducts = data.length;
+  let handlePerPage =(value)=>{
+    setPerPage(value)
+  }
   // for sending product data to cart
   let dispatch = useDispatch();
   let handleCart = (item) => {
@@ -66,6 +69,7 @@ const [viewType, setViewType] = useState('grid');
 const toggleView = (type) => {
   setViewType(type);
 };
+
 console.log(viewType);
   return (
     <section className="pt-[124px] pb-[140px]">
@@ -97,7 +101,7 @@ console.log(viewType);
 
           {/* ==========Shop view Start======= */}
           <aside>
-            <Filter2 className="mb-[60px]" toggleView={toggleView}/>
+            <Filter2 className="mb-[60px]" toggleView={toggleView} handlePerPage={handlePerPage}/>
             <div className="w-full">
               {viewType == "grid"?
               (

@@ -1,13 +1,13 @@
 import React from "react";
 
-function CustomSelector({ option, defaultvalue, className }) {
+function CustomSelector({ option, defaultvalue, className, handlePerPage }) {
   return (
     <form className={`max-w-sm ${className}`}>
-      <select className="bg-gray-50 border border-gray-300 text-gray-900 text-base font-dmsans rounded-lg outline-none block w-full p-2.5 ">
+      <select onChange={(e)=>handlePerPage(+e.target.value)} className="bg-white border border-[#F0F0F0] text-[#767676] text-base font-dmsans outline-none block w-full px-[22px] py-[10px]">
         <option selected>{defaultvalue}</option>
 
         {option?.map((item, i) => (
-          <option value={item}>{item}</option>
+          <option value={item} key={i}>{item}</option>
         ))}
       </select>
     </form>
