@@ -15,6 +15,8 @@ import Button from "../components/Button";
 import Accordion from "../components/Accordion";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../slices/singleSlice";
+
+import { Bounce, ToastContainer, toast } from "react-toastify";
 import Breadcrumb from "../components/Breadcrumb";
 
 function ProductDetails() {
@@ -50,6 +52,17 @@ function ProductDetails() {
   let dispatch = useDispatch();
   let handleProduct = (item) => {
     dispatch(addToCart({...item, qun:1}));
+    toast("🦄 Added to Cart Successfully!", {
+      position: "top-right",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
   };
   // for customselector
   let option =["M","L","XL","XXL"]
@@ -69,6 +82,19 @@ function ProductDetails() {
     <>
       <section className="pt-[124px] pb-10">
         <Container> 
+        <ToastContainer
+            position="top-right"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition:Bounce
+          />
           <Flex className={`mb-[100px]`}>
             <h1 className="font-dmsans text-xs text-third font-normal">
               {dataa}

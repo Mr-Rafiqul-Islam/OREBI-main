@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import Category from "../components/Category";
 import ColorFilter from "../components/ColorFilter"
 import BrandFilter from "../components/BrandFilter"
+import { Bounce, ToastContainer, toast } from "react-toastify";
 
 import React, { useContext, useState } from "react";
 import Product from "../components/Product";
@@ -43,6 +44,17 @@ const Shop = () => {
   let dispatch = useDispatch();
   let handleCart = (item) => {
     dispatch(addToCart({ ...item, qun: 1 }));
+    toast("🦄 Added to Cart, Successfully!", {
+      position: "top-right",
+      autoClose: 2500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
     console.log("cart", item);
   };
   // for category product
@@ -74,6 +86,19 @@ console.log(viewType);
   return (
     <section className="pt-[124px] pb-[140px]">
       <Container>
+      <ToastContainer
+            position="bottom-left"
+            autoClose={2500}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition:Bounce
+          />
         <Flex>
           <h1 className="font-dmsans text-xs text-third font-normal">
             {dataa}
