@@ -134,7 +134,7 @@ console.log(viewType);
                     ))}
               </div>
               ):(
-                <div>
+                <div className="flex flex-col gap-y-5">
                   {cateProducts.length > 0
                   ? cateProducts.map((item) => (
                       <Product

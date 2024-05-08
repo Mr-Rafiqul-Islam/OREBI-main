@@ -8,9 +8,9 @@ import { GrPowerCycle } from "react-icons/gr";
 import { Link } from 'react-router-dom'
 
 
-const Product = ({src,batch,title,price,color,cartInfo,link}) => {
+const Product = ({src,batch,title,price,color,cartInfo,link,className}) => {
   return (
-    <div className='w-full group'>
+    <div className={`w-full group ${className}`}>
 
         {/* ==========upper part of card start========= */}
         <div className="w-full relative overflow-hidden">
