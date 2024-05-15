@@ -6,7 +6,9 @@
 .new .slick-slide > div{
  margin: 0 20px;
 }
-
+.slick-dots {
+    width: auto !important;
+}
 .slick-dots .slick-active div{
     border-right: 3px black solid !important;
     transition: all linear 500ms;

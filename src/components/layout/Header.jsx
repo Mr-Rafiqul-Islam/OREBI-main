@@ -120,7 +120,7 @@ const Header = () => {
               >
                 <Search className={`cursor-pointer`} />
               </div>
-              <div className="absolute bottom-100 w-full overflow-auto h-96 ">
+              <div className={`absolute bottom-100 w-full overflow-auto ${searchWord?"h-96":"h-0"}`}>
                 {searchWord &&
                   filteredData.map((item, i) => (
                     <Link to={`/shop/${item.id}`}>
