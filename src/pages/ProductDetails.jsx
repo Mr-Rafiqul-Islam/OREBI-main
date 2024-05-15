@@ -30,7 +30,7 @@ function ProductDetails() {
   };
   useEffect(() => {
     getAPiId();
-  }, []);
+  }, [data]);
   // console.log(data);
 
   //   for breadcrumbs
